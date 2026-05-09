@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr"><head><title>02 - Checklist de Entregas | Prof. Romualdo</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Inter:ital,wght@0,400;0,600;1,400;1,600&amp;family=JetBrains Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="🚀 Projetos Integrados 2"/><meta property="og:title" content="02 - Checklist de Entregas | Prof. Romualdo"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="02 - Checklist de Entregas | Prof. Romualdo"/><meta name="twitter:description" content="✅ Checklist de Entregas — Projetos Integrados 2 📚 Disciplina: VIA231 — Projetos Integrados 2 👨‍🏫 Professor: Romualdo Mathias Filho 🏫 Semestre: 2026/1 — Uniube 📌 Como funciona a avaliação? Cada Checkpoint (CP) vale 10 pontos, distribuídos em 4 critérios: CritérioO que é avaliadoPeso🎤 Apresentaç..."/><meta property="og:description" content="✅ Checklist de Entregas — Projetos Integrados 2 📚 Disciplina: VIA231 — Projetos Integrados 2 👨‍🏫 Professor: Romualdo Mathias Filho 🏫 Semestre: 2026/1 — Uniube 📌 Como funciona a avaliação? Cada Checkpoint (CP) vale 10 pontos, distribuídos em 4 critérios: CritérioO que é avaliadoPeso🎤 Apresentaç..."/><meta property="og:image:alt" content="✅ Checklist de Entregas — Projetos Integrados 2 📚 Disciplina: VIA231 — Projetos Integrados 2 👨‍🏫 Professor: Romualdo Mathias Filho 🏫 Semestre: 2026/1 — Uniube 📌 Como funciona a avaliação? Cada Checkpoint (CP) vale 10 pontos, distribuídos em 4 critérios: CritérioO que é avaliadoPeso🎤 Apresentaç..."/><meta property="twitter:domain" content="rofilho.github.io/projetos2"/><meta property="og:url" content="https://rofilho.github.io/projetos2/02---Checklist-de-Entregas"/><meta property="twitter:url" content="https://rofilho.github.io/projetos2/02---Checklist-de-Entregas"/><link rel="icon" href="./static/icon.png"/><meta name="description" content="✅ Checklist de Entregas — Projetos Integrados 2 📚 Disciplina: VIA231 — Projetos Integrados 2 👨‍🏫 Professor: Romualdo Mathias Filho 🏫 Semestre: 2026/1 — Uniube 📌 Como funciona a avaliação? Cada Checkpoint (CP) vale 10 pontos, distribuídos em 4 critérios: CritérioO que é avaliadoPeso🎤 Apresentaç..."/><meta name="generator" content="Quartz"/><link href="./index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiQzpcXFVzZXJzXFxyb211YVxcQXBwRGF0YVxcTG9jYWxcXFRlbXBcXHByb2pldG9zMlxccXVhcnR6XFxjb21wb25lbnRzXFxzdHlsZXMiLCJzb3VyY2VzIjpbIm1lcm1haWQuaW5saW5lLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUdGO0VBQ0U7OztBQUtGO0VBQ0U7RUFDQTs7O0FBSUo7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTs7QUFHRjtFQUNFOztBQUlGO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLmV4cGFuZC1idXR0b24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsb2F0OiByaWdodDtcbiAgcGFkZGluZzogMC40cmVtO1xuICBtYXJnaW46IDAuM3JlbTtcbiAgcmlnaHQ6IDA7IC8vIE5PVEU6IHJpZ2h0IHdpbGwgYmUgc2V0IGluIG1lcm1haWQuaW5saW5lLnRzXG4gIGNvbG9yOiB2YXIoLS1ncmF5KTtcbiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1kYXJrKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICBib3JkZXI6IDFweCBzb2xpZDtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBvcGFjaXR5OiAwO1xuICB0cmFuc2l0aW9uOiAwLjJzO1xuXG4gICYgPiBzdmcge1xuICAgIGZpbGw6IHZhcigtLWxpZ2h0KTtcbiAgICBmaWx0ZXI6IGNvbnRyYXN0KDAuMyk7XG4gIH1cblxuICAmOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYm9yZGVyLWNvbG9yOiB2YXIoLS1zZWNvbmRhcnkpO1xuICB9XG5cbiAgJjpmb2N1cyB7XG4gICAgb3V0bGluZTogMDtcbiAgfVxufVxuXG5wcmUge1xuICAmOmhvdmVyID4gLmV4cGFuZC1idXR0b24ge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgdHJhbnNpdGlvbjogMC4ycztcbiAgfVxufVxuXG4jbWVybWFpZC1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGNvbnRhaW46IGxheW91dDtcbiAgei1pbmRleDogOTk5O1xuICBsZWZ0OiAwO1xuICB0b3A6IDA7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogbm9uZTtcbiAgYmFja2Ryb3AtZmlsdGVyOiBibHVyKDRweCk7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC41KTtcblxuICAmLmFjdGl2ZSB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG5cbiAgJiA+ICNtZXJtYWlkLXNwYWNlIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcbiAgICBoZWlnaHQ6IDgwdmg7XG4gICAgd2lkdGg6IDgwdnc7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxuICAgICYgPiAubWVybWFpZC1jb250ZW50IHtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcbiAgICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjFzIGVhc2U7XG4gICAgICBvdmVyZmxvdzogdmlzaWJsZTtcbiAgICAgIG1pbi1oZWlnaHQ6IDIwMHB4O1xuICAgICAgbWluLXdpZHRoOiAyMDBweDtcblxuICAgICAgcHJlIHtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICBib3JkZXI6IG5vbmU7XG4gICAgICB9XG5cbiAgICAgIHN2ZyB7XG4gICAgICAgIG1heC13aWR0aDogbm9uZTtcbiAgICAgICAgaGVpZ2h0OiBhdXRvO1xuICAgICAgfVxuICAgIH1cblxuICAgICYgPiAubWVybWFpZC1jb250cm9scyB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBib3R0b206IDIwcHg7XG4gICAgICByaWdodDogMjBweDtcbiAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICBnYXA6IDhweDtcbiAgICAgIHBhZGRpbmc6IDhweDtcbiAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgICBib3gtc2hhZG93OiAwIDJweCA0cHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgICAgei1pbmRleDogMjtcblxuICAgICAgLm1lcm1haWQtY29udHJvbC1idXR0b24ge1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgd2lkdGg6IDMycHg7XG4gICAgICAgIGhlaWdodDogMzJweDtcbiAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHQpO1xuICAgICAgICBjb2xvcjogdmFyKC0tZGFyayk7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtZmFtaWx5OiB2YXIoLS1ib2R5Rm9udCk7XG4gICAgICAgIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgfVxuXG4gICAgICAgICY6YWN0aXZlIHtcbiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KTtcbiAgICAgICAgfVxuXG4gICAgICAgIC8vIFN0eWxlIHRoZSByZXNldCBidXR0b24gZGlmZmVyZW50bHlcbiAgICAgICAgJjpudGgtY2hpbGQoMikge1xuICAgICAgICAgIHdpZHRoOiBhdXRvO1xuICAgICAgICAgIHBhZGRpbmc6IDAgMTJweDtcbiAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiJdfQ== */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="./prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("./static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://rofilho.github.io/projetos2/index.xml"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://rofilho.github.io/projetos2/02---Checklist-de-Entregas-og-image.webp"/><meta property="og:image:url" content="https://rofilho.github.io/projetos2/02---Checklist-de-Entregas-og-image.webp"/><meta name="twitter:image" content="https://rofilho.github.io/projetos2/02---Checklist-de-Entregas-og-image.webp"/><meta property="og:image:type" content="image/.webp"/></head><body data-slug="02---Checklist-de-Entregas"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"></div><div class="center"><div class="page-header"><header><h2 class="page-title"><a href="." class="page-title__link"><img src="https://uniube.br/img/landing/logo_azul.svg" alt="Uniube" class="page-title__logo page-title__logo--light"/><img src="https://uniube.br/img/landing/logo_branca.svg" alt="Uniube" class="page-title__logo page-title__logo--dark"/><span class="page-title__text">🚀 Projetos Integrados 2</span></a></h2><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Pesquisar</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Pesquisar por algo" placeholder="Pesquisar por algo"/><div class="search-layout" data-preview="true"></div></div></div></div><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Tema escuro"><title>Tema escuro</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Tema claro"><title>Tema claro</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></header><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="./">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>02   Checklist de Entregas</a></div></nav><nav class="lesson-nav" aria-label="Navegação entre aulas"><div class="lesson-nav__slot"><a href="/01---Informacoes-da-Turma" class="nav-pill nav-pill--prev" data-spa="true"><div class="nav-pill__icon">📖</div><div class="nav-pill__body"><span class="nav-pill__label">← Anterior</span><span class="nav-pill__title">01 - Informacoes da Turma</span></div></a></div><div class="lesson-nav__slot lesson-nav__slot--right"><a href="/03---Tabela-Mestre-de-Avaliacao" class="nav-pill nav-pill--next" data-spa="true"><div class="nav-pill__icon">📖</div><div class="nav-pill__body"><span class="nav-pill__label">Próxima →</span><span class="nav-pill__title">03 - Tabela Mestre de Avaliacao</span></div></a></div></nav><h1 class="article-title">02 - Checklist de Entregas</h1><p show-comma="true" class="content-meta"><time datetime="2026-04-19T16:25:51.000Z">19 de abr. de 2026</time><span>Leitura de 8 min</span></p></div></div><article class="popover-hint"><h1 id="-checklist-de-entregas--projetos-integrados-2">✅ Checklist de Entregas — Projetos Integrados 2<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-checklist-de-entregas--projetos-integrados-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>📚 <strong>Disciplina:</strong> VIA231 — Projetos Integrados 2 👨‍🏫 <strong>Professor:</strong> Romualdo Mathias Filho 🏫 <strong>Semestre:</strong> 2026/1 — Uniube</p>
+</blockquote>
+<hr/>
+<h1 id="-como-funciona-a-avaliação"><strong>📌 Como funciona a avaliação?</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-como-funciona-a-avaliação" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>Cada Checkpoint (CP) vale <strong>10 pontos</strong>, distribuídos em 4 critérios:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Critério</strong></th><th><strong>O que é avaliado</strong></th><th><strong>Peso</strong></th></tr></thead><tbody><tr><td>🎤 Apresentação</td><td>Clareza, organização, participação de todos</td><td>2,5</td></tr><tr><td>🦊 GitLab</td><td>Commits frequentes, mensagens claras, branches, estrutura</td><td>2,5</td></tr><tr><td>💻 Tecnologia</td><td>Qualidade do código, arquitetura, funcionalidade</td><td>2,5</td></tr><tr><td>🔴 Live Code</td><td>Um aluno sorteado na hora modifica o código ao vivo</td><td>2,5</td></tr></tbody></table></div>
+<blockquote>
+<p>⚠️ <strong>ATENÇÃO:</strong> Todo membro do grupo deve estar preparado para o Live Code! O aluno será sorteado aleatoriamente e deverá demonstrar domínio real do código. Não saber explicar ou modificar o código = nota baixa para o grupo inteiro.</p>
+</blockquote>
+<hr/>
+<h1 id="️-cronograma-dos-checkpoints"><strong>🗓️ Cronograma dos Checkpoints</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-cronograma-dos-checkpoints" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>CP</strong></th><th><strong>Semana</strong></th><th><strong>Data</strong></th><th><strong>Marco</strong></th></tr></thead><tbody><tr><td>CP-1</td><td>S4</td><td>12/03</td><td>🗄️ Banco de Dados</td></tr><tr><td>CP-2</td><td>S6</td><td>26/03</td><td>⚙️ Backend — API CRUD</td></tr><tr><td>CP-3</td><td>S9</td><td>16/04</td><td>🔗 Integração Frontend + API</td></tr><tr><td>CP-4</td><td>S12</td><td>07/05</td><td>🚀 MVP Completo</td></tr><tr><td>CP-5</td><td>S14</td><td>21/05</td><td>🌐 Hospedagem + README Final</td></tr></tbody></table></div>
+<hr/>
+<h1 id="-documentação-de-gestão-obrigatória"><strong>📂 Documentação de Gestão Obrigatória</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-documentação-de-gestão-obrigatória" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>Além do código, cada grupo <strong>deve manter documentação de gestão</strong> no repositório GitLab, na pasta <code>/docs</code>.</p>
+<h2 id="estrutura-esperada-no-repositório"><strong>Estrutura esperada no repositório</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#estrutura-esperada-no-repositório" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<pre><code>
+docs/
+├── atas/
+│   ├── ata_S03_2026-03-05.md
+│   ├── ata_S04_2026-03-12.md
+│   ├── ata_S05_2026-03-19.md
+│   └── ...
+├── termo_abertura.md
+├── cronograma.md
+└── relatorio_final.md
+</code></pre>
+<h2 id="-ata-de-reunião"><strong>📝 Ata de Reunião</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-ata-de-reunião" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Registro formal das decisões de cada reunião do grupo.</p>
+<p><strong>Mínimo de 12 atas ao longo do semestre</strong> (≈ 1 por semana).</p>
+<h2 id="template--ata-de-reunião"><strong>Template — Ata de Reunião</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#template--ata-de-reunião" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<pre><code>
+# Ata de Reunião — Semana SXX
+
+Data: DD/MM/AAAA
+Horário: HH:MM – HH:MM
+Local/Plataforma: Presencial / Discord / Meet
+Grupo: [Nome do Grupo]
+
+## Participantes
+| Nome | Presente |
+|------|----------|
+| Nome | ✅ / ❌  |
+| Nome | ✅ / ❌  |
+
+## Pauta
+1. [Tópico 1]
+2. [Tópico 2]
+
+## Decisões Tomadas
+- Decisão 1
+- Decisão 2
+
+## Tarefas Definidas
+| Tarefa | Responsável | Prazo |
+|--------|------------|-------|
+| Tarefa X | Nome | DD/MM |
+| Tarefa Y | Nome | DD/MM |
+
+## Pendências Anteriores
+- [x] Tarefa concluída
+- [ ] Tarefa pendente
+
+## Observações
+Anotações relevantes.
+</code></pre>
+<h2 id="-documentos-obrigatórios"><strong>📋 Documentos obrigatórios</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-documentos-obrigatórios" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Documento</strong></th><th><strong>Quando</strong></th><th><strong>Descrição</strong></th></tr></thead><tbody><tr><td>📄 Termo de Abertura</td><td>CP-1</td><td>Nome, problema, objetivo, escopo, stack, membros</td></tr><tr><td>📅 Cronograma</td><td>CP-1 → atualizar a cada CP</td><td>Planejamento de entregas por semana</td></tr><tr><td>📊 Board/Kanban</td><td>CP-1 em diante</td><td>Issues no GitLab com labels e responsáveis</td></tr><tr><td>📝 Atas de Reunião</td><td>A cada reunião</td><td>Mínimo 12 no semestre</td></tr><tr><td>📑 Relatório Final</td><td>CP-5</td><td>1 página: planejado vs. entregue + lições</td></tr></tbody></table></div>
+<blockquote>
+<p>💡 <strong>Dica:</strong> Usem o Board de Issues do GitLab! Criem Issues para cada tarefa, atribuam responsáveis, usem labels (<code>feature</code>, <code>bug</code>, <code>docs</code>, <code>database</code>) e movam entre colunas (To Do → Doing → Done). Isso conta no critério GitLab!</p>
+</blockquote>
+<hr/>
+<h1 id="️-cp-1--banco-de-dados"><strong>🗄️ CP-1 — Banco de Dados</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-cp-1--banco-de-dados" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>📅 <strong>Semana 4 · 12/03/2026</strong> 🎯 <strong>Objetivo:</strong> Script SQL funcional + Modelo ER documentado</p>
+</blockquote>
+<h2 id="-entregáveis-técnicos"><strong>💻 Entregáveis técnicos</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-entregáveis-técnicos" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Modelo Entidade-Relacionamento (ER) — diagrama visual (dbdiagram.io, draw.io, etc.)</li>
+<li>Script SQL de criação — DDL com tabelas, PKs e FKs</li>
+<li>Script SQL de dados iniciais — INSERTs com dados de exemplo</li>
+<li>Banco rodando — demonstrar banco ativo (local ou Docker)</li>
+<li>Documentação no README — explicar tabelas e relacionamentos</li>
+</ul>
+<h2 id="-documentos-de-gestão"><strong>📝 Documentos de gestão</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-documentos-de-gestão" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Termo de Abertura do Projeto na pasta <code>/docs</code></li>
+<li>Cronograma do projeto (CP-1 a CP-5)</li>
+<li>Mínimo 2 atas de reunião (semanas S3 e S4)</li>
+<li>Board/Kanban configurado no GitLab (Issues + labels + responsáveis)</li>
+</ul>
+<h2 id="-gitlab"><strong>🦊 GitLab</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-gitlab" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Repositório criado e organizado (pastas <code>/database</code>, <code>/docs</code>, etc.)</li>
+<li>Commits descritivos — mínimo 1 por membro</li>
+<li>Todos os membros como colaboradores no projeto</li>
+</ul>
+<h2 id="-apresentação"><strong>🎤 Apresentação</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-apresentação" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Explicar o problema que o sistema resolve</li>
+<li>Mostrar o diagrama ER e justificar as tabelas</li>
+<li>Demonstrar o banco funcionando com queries de teste</li>
+</ul>
+<hr/>
+<h1 id="️-cp-2--backend--api-crud"><strong>⚙️ CP-2 — Backend / API CRUD</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-cp-2--backend--api-crud" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>📅 <strong>Semana 6 · 26/03/2026</strong> 🎯 <strong>Objetivo:</strong> API CRUD funcional conectada ao banco do CP-1</p>
+</blockquote>
+<h2 id="-entregáveis-técnicos-1"><strong>💻 Entregáveis técnicos</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-entregáveis-técnicos-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Pelo menos 2 endpoints CRUD (Create, Read, Update, Delete)</li>
+<li>Conexão ao banco de dados do CP-1 funcionando</li>
+<li>Testes manuais demonstrados (Postman, Insomnia, Thunder Client)</li>
+<li>Tratamento básico de erros (status codes: 200, 201, 400, 404, 500)</li>
+<li>Documentação da API — rotas, métodos, parâmetros, respostas</li>
+</ul>
+<h2 id="-documentos-de-gestão-1"><strong>📝 Documentos de gestão</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-documentos-de-gestão-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Mínimo 2 atas novas (semanas S5 e S6)</li>
+<li>Board/Kanban atualizado — tarefas do CP-2 movidas para “Done”</li>
+<li>Cronograma atualizado — marcar concluído, ajustar pendente</li>
+</ul>
+<h2 id="-gitlab-1"><strong>🦊 GitLab</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-gitlab-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Código da API em pasta organizada (<code>/backend</code> ou <code>/api</code>)</li>
+<li>Commits semanais com mensagens descritivas</li>
+<li><code>.gitignore</code> configurado (não commitar <code>node_modules</code>, <code>.env</code>)</li>
+<li>README atualizado com instruções de como rodar</li>
+</ul>
+<h2 id="-apresentação-1"><strong>🎤 Apresentação</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-apresentação-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Explicar a arquitetura da API (rotas, controllers, models)</li>
+<li>Demonstrar cada endpoint ao vivo (Postman ou similar)</li>
+<li>Mostrar integração com o banco de dados</li>
+</ul>
+<hr/>
+<h1 id="-cp-3--integração-frontend--api"><strong>🔗 CP-3 — Integração Frontend + API</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-cp-3--integração-frontend--api" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>📅 <strong>Semana 9 · 16/04/2026</strong> 🎯 <strong>Objetivo:</strong> Frontend consumindo a API com operações funcionais</p>
+</blockquote>
+<h2 id="-entregáveis-técnicos-2"><strong>💻 Entregáveis técnicos</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-entregáveis-técnicos-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Telas do frontend criadas — pelo menos as telas principais</li>
+<li>Consumo da API — requisições HTTP (fetch, axios, etc.)</li>
+<li>CRUD via interface — criar, visualizar, editar, deletar pela tela</li>
+<li>Feedback visual — mensagens de sucesso/erro para o usuário</li>
+<li>Navegação funcional — menu, rotas ou links entre telas</li>
+</ul>
+<h2 id="-documentos-de-gestão-2"><strong>📝 Documentos de gestão</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-documentos-de-gestão-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Mínimo 3 atas novas (semanas S7, S8 e S9)</li>
+<li>Board/Kanban atualizado — tarefas do CP-3 organizadas</li>
+<li>Cronograma atualizado — progresso até metade do semestre</li>
+<li>Retrospectiva breve — o que deu certo, o que melhorar (pode ser na ata)</li>
+</ul>
+<h2 id="-gitlab-2"><strong>🦊 GitLab</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-gitlab-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Código do frontend no repositório (<code>/frontend</code> ou <code>/client</code>)</li>
+<li>Commits de todos os membros — distribuição equilibrada</li>
+<li>Issues ou boards usados para organizar tarefas</li>
+</ul>
+<h2 id="-apresentação-2"><strong>🎤 Apresentação</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-apresentação-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Demonstrar fluxo completo: frontend → API → banco → tela</li>
+<li>Mostrar pelo menos 1 operação de cada tipo do CRUD</li>
+<li>Explicar a stack frontend escolhida e justificar</li>
+</ul>
+<hr/>
+<h1 id="-cp-4--mvp-completo"><strong>🚀 CP-4 — MVP Completo</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-cp-4--mvp-completo" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>📅 <strong>Semana 12 · 07/05/2026</strong> 🎯 <strong>Objetivo:</strong> Fluxo completo end-to-end funcionando</p>
+</blockquote>
+<h2 id="-entregáveis-técnicos-3"><strong>💻 Entregáveis técnicos</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-entregáveis-técnicos-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Fluxo principal funcionando — tarefa central do sistema OK</li>
+<li>Validações implementadas — campos obrigatórios, formatos, regras de negócio</li>
+<li>Autenticação/Autorização (se aplicável) — login, sessão, controle de acesso</li>
+<li>Interface polida — responsiva, sem telas quebradas</li>
+<li>Integração completa — Frontend + Backend + Banco 100% conectados</li>
+</ul>
+<h2 id="-documentos-de-gestão-3"><strong>📝 Documentos de gestão</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-documentos-de-gestão-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Mínimo 3 atas novas (semanas S10, S11 e S12)</li>
+<li>Board/Kanban atualizado — tarefas finais antes do MVP</li>
+<li>Cronograma atualizado — status antes da reta final</li>
+<li>Lista de bugs/pendências — Issues abertas no GitLab</li>
+</ul>
+<h2 id="-gitlab-3"><strong>🦊 GitLab</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-gitlab-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Histórico de commits consistente ao longo das semanas</li>
+<li>Uso de branches para features (<code>feature/login</code>, <code>feature/dashboard</code>)</li>
+<li>Merge requests documentados (diferencial)</li>
+<li>README completo: descrição, stack, como instalar e rodar</li>
+</ul>
+<h2 id="-apresentação-3"><strong>🎤 Apresentação</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-apresentação-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Demo do fluxo completo (cadastro → login → operação → resultado)</li>
+<li>Explicar decisões técnicas e desafios enfrentados</li>
+<li>Mostrar evolução do projeto desde o CP-1</li>
+</ul>
+<hr/>
+<h1 id="-cp-5--hospedagem--readme-final"><strong>🌐 CP-5 — Hospedagem + README Final</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-cp-5--hospedagem--readme-final" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>📅 <strong>Semana 14 · 21/05/2026</strong> 🎯 <strong>Objetivo:</strong> Sistema hospedado online + documentação final</p>
+</blockquote>
+<h2 id="-entregáveis-técnicos-4"><strong>💻 Entregáveis técnicos</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-entregáveis-técnicos-4" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Sistema hospedado e acessível via URL (Vercel, Render, Railway, etc.)</li>
+<li>Banco de dados em produção (Supabase, PlanetScale, ElephantSQL, etc.)</li>
+<li>URL funcionando — link direto para acessar o sistema</li>
+<li>README final completo contendo:
+<ul>
+<li>Nome do projeto e descrição</li>
+<li>Problema que resolve</li>
+<li>Stack utilizada</li>
+<li>Instruções de instalação e execução local</li>
+<li>Link para o sistema hospedado</li>
+<li>Screenshots ou GIFs demonstrativos</li>
+<li>Membros da equipe</li>
+</ul>
+</li>
+<li>Código limpo — sem console.log de debug, sem comentários desnecessários</li>
+</ul>
+<h2 id="-documentos-de-gestão-4"><strong>📝 Documentos de gestão</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-documentos-de-gestão-4" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Mínimo 2 atas novas (semanas S13 e S14)</li>
+<li>Todas as atas do semestre compiladas em <code>/docs/atas</code></li>
+<li>Board/Kanban finalizado — tudo em “Done” ou documentado como pendência</li>
+<li>Relatório final — 1 página: planejado vs. entregue + lições aprendidas</li>
+<li>Cronograma final — versão final: cumprido vs. planejado</li>
+</ul>
+<h2 id="-gitlab-4"><strong>🦊 GitLab</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-gitlab-4" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Repositório público ou compartilhado com o professor</li>
+<li>Tags ou releases marcando versões importantes</li>
+<li>Histórico limpo e organizado</li>
+<li>Pasta <code>/docs</code> completa com toda documentação do semestre</li>
+</ul>
+<h2 id="-apresentação-4"><strong>🎤 Apresentação</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-apresentação-4" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Acessar o sistema pela URL ao vivo</li>
+<li>Demo completa do sistema em produção</li>
+<li>Apresentar o README como documentação oficial</li>
+</ul>
+<hr/>
+<h1 id="-amostratec--avaliação-final-n2"><strong>🏆 AMOSTRATEC — Avaliação Final (N2)</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-amostratec--avaliação-final-n2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>🎓 A AMOSTRATEC é a avaliação final do semestre, separada dos checkpoints.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Critério</strong></th><th><strong>Peso</strong></th></tr></thead><tbody><tr><td>🟢 Funcionamento completo do sistema</td><td>25 pts</td></tr><tr><td>🌐 Hospedagem ativa e acessível</td><td>10 pts</td></tr><tr><td>🛡️ Qualidade do código + Defesa técnica</td><td>15 pts</td></tr><tr><td><strong>Total</strong></td><td><strong>50 pts</strong></td></tr></tbody></table></div>
+<h2 id="o-que-precisa-estar-pronto"><strong>O que precisa estar pronto</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#o-que-precisa-estar-pronto" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Sistema 100% funcional e hospedado</li>
+<li>Todos os membros preparados para defesa técnica</li>
+<li>Apresentação final organizada e profissional</li>
+<li>README completo e atualizado no GitLab</li>
+</ul>
+<hr/>
+<h1 id="-cálculo-da-nota-final"><strong>📊 Cálculo da Nota Final</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-cálculo-da-nota-final" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Componente</strong></th><th><strong>Valor</strong></th></tr></thead><tbody><tr><td>N1 — Soma dos 5 Checkpoints</td><td>5 × 10 = <strong>50 pts</strong></td></tr><tr><td>N2 — AMOSTRATEC</td><td><strong>50 pts</strong></td></tr><tr><td><strong>NOTA FINAL</strong></td><td><strong>N1 + N2 = 100 pts</strong></td></tr></tbody></table></div>
+<blockquote>
+<p>✅ <strong>Aprovação:</strong> ≥ 60 pontos</p>
+</blockquote>
+<hr/>
+<h1 id="-dicas-para-se-dar-bem"><strong>⚡ Dicas para se dar bem</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-dicas-para-se-dar-bem" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>🔥 <strong>1. Commitem com frequência!</strong> Commits semanais são avaliados. Não façam tudo na última hora.</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>2. Mensagens de commit descritivas</strong> ❌ <code>update</code> — ✅ <code>feat: adiciona endpoint de criação de usuário</code></p>
+</blockquote>
+<blockquote>
+<p>👥 <strong>3. Todos participam</strong> Cada membro deve ter commits. Grupos com “carregadores” serão penalizados no critério GitLab.</p>
+</blockquote>
+<blockquote>
+<p>🎯 <strong>4. Live Code — TODOS estudam tudo</strong> Qualquer membro pode ser sorteado. Estudem o código do grupo inteiro, não só a “sua parte”.</p>
+</blockquote>
+<blockquote>
+<p>📖 <strong>5. Documentem o projeto</strong> O README é a vitrine. Deve explicar tudo para alguém de fora entender e rodar.</p>
+</blockquote>
+<blockquote>
+<p>🌿 <strong>6. Usem branches</strong> Trabalhar direto na <code>main</code> é arriscado. Usem branches e façam merge.</p>
+</blockquote>
+<blockquote>
+<p>🌐 <strong>7. Hospedagem desde cedo</strong> Não deixem para hospedar só no CP-5. Quanto antes, menos problemas.</p>
+</blockquote>
+<blockquote>
+<p>📋 <strong>8. Façam atas de reunião!</strong> Ata não é burocracia — é registro de decisões. Quando surgir “quem ficou de fazer o quê”, a ata resolve.</p>
+</blockquote>
+<blockquote>
+<p>📊 <strong>9. Usem o Board do GitLab</strong> Issues com labels (<code>bug</code>, <code>feature</code>, <code>docs</code>) + Kanban board = organização visível e nota no critério GitLab.</p>
+</blockquote>
+<blockquote>
+<p>📁 <strong>10. Pasta <code>/docs</code> organizada</strong> Atas, diagramas, cronogramas — tudo indexado. Bagunça = nota menor em Apresentação.</p>
+</blockquote>
+<hr/>
+<blockquote>
+<p>📅 Atualizado em: 26/03/2026 📌 Projetos Integrados 2 (VIA231) — Uniube 2026/1</p>
+</blockquote></article><hr/><div class="page-footer"></div></div><div class="right sidebar"></div><footer class="footer "><div class="footer__brand"><img src="https://uniube.br/img/landing/logo_azul.svg" alt="Universidade de Uberaba" class="footer__logo footer__logo--light"/><img src="https://uniube.br/img/landing/logo_branca.svg" alt="Universidade de Uberaba" class="footer__logo footer__logo--dark"/><div class="footer__info"><span class="footer__name">Prof. Romualdo Filho</span><a class="footer__email" href="mailto:romualdo.filho@uniube.br">romualdo.filho@uniube.br</a></div></div><ul class="footer__links"><li><a href="https://uniube.br" target="_blank" rel="noopener noreferrer">Mural Uniube</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="./postscript.js" type="module" data-persist="true"></script></html>
