@@ -1,11 +1,11 @@
-﻿# 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
+﻿# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 👨‍🏫 **Avaliador:** Prof. Romualdo Mathias Filho 📚 **Disciplina:** VIA231 — Projetos Integrados 2 🏫 **Semestre:** 2026/1 — Uniube
 > 
 
 ---
 
-# **🏁 Quadro Geral — Todos os CPs**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Grupo** | **CP-1 (12/03)** | **CP-2 (26/03)** | **CP-3 (16/04)** | **CP-4 (07/05)** | **CP-5 (21/05)** | **N1 (Σ CPs)** |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -15,7 +15,7 @@
 
 ---
 
-# **🏆 Quadro de Notas Finais**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Grupo** | **N1 (CPs)** | **N2 (AMOSTRATEC)** | **Total** | **Status** |
 | --- | --- | --- | --- | --- |
@@ -27,7 +27,7 @@
 
 ---
 
-# **📐 Rubrica de Referência**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Nível** | **Nota** | **Quando usar** |
 | --- | --- | --- |
@@ -40,12 +40,12 @@
 
 ---
 
-# **🗄️ CP-1 — Banco de Dados**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 📅 Semana 4 · 12/03/2026 🎯 Script SQL funcional + Modelo ER documentado
 > 
 
-## **sem_nome**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -63,7 +63,7 @@
 > ---
 > 
 
-## **DEVLapa**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -83,12 +83,12 @@
 
 ---
 
-# **⚙️ CP-2 — Backend / API CRUD**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 📅 Semana 6 · 26/03/2026 🎯 API CRUD funcional conectada ao banco do CP-1
 > 
 
-## **sem_nome**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -106,7 +106,7 @@
 > ---
 > 
 
-## **DEVLapa**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -126,12 +126,12 @@
 
 ---
 
-# **🔗 CP-3 — Integração Frontend + API**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 📅 Semana 9 · 16/04/2026 🎯 Frontend consumindo a API com operações funcionais
 > 
 
-## **sem_nome**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -149,7 +149,7 @@
 > ---
 > 
 
-## **DEVLapa**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -169,12 +169,12 @@
 
 ---
 
-# **🚀 CP-4 — MVP Completo**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 📅 Semana 12 · 07/05/2026 🎯 Fluxo completo end-to-end funcionando
 > 
 
-## **sem_nome**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -192,7 +192,7 @@
 > ---
 > 
 
-## **DEVLapa**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -212,12 +212,12 @@
 
 ---
 
-# **🌐 CP-5 — Hospedagem + README Final**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 📅 Semana 14 · 21/05/2026 🎯 Sistema hospedado online + documentação final
 > 
 
-## **sem_nome**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -235,7 +235,7 @@
 > ---
 > 
 
-## **DEVLapa**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -257,12 +257,12 @@
 
 ---
 
-# **🏆 AMOSTRATEC — Avaliação Final (N2 = 50 pts)**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 🎓 Avaliação final do semestre, separada dos checkpoints.
 > 
 
-## **sem_nome**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -277,7 +277,7 @@
 > ---
 > 
 
-## **DEVLapa**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 | **Critério** | **Nota** | **Observações** |
 | --- | --- | --- |
@@ -294,7 +294,7 @@
 
 ---
 
-# **📝 Anotações Gerais**
+# 🖥️ Aula - 03: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 
 > 
@@ -303,4 +303,5 @@
 
 > 📅 Atualizado em: 26/03/2026 📌 Projetos Integrados 2 (VIA231) — Uniube 2026/1
 >
+
 
