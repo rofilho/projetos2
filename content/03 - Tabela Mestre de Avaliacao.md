@@ -1,3 +1,5 @@
+﻿![Capa](assets/capa_aula03.png)
+
 # 📊 Tabela Mestre de Avaliação — Projetos Integrados 2
 
 > 👨‍🏫 **Avaliador:** Prof. Romualdo Mathias Filho 📚 **Disciplina:** VIA231 — Projetos Integrados 2 🏫 **Semestre:** 2026/1 — Uniube

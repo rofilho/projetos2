@@ -1,3 +1,5 @@
+﻿![Capa](assets/capa_aula02.png)
+
 # ✅ Checklist de Entregas — Projetos Integrados 2
 
 > 📚 **Disciplina:** VIA231 — Projetos Integrados 2 👨‍🏫 **Professor:** Romualdo Mathias Filho 🏫 **Semestre:** 2026/1 — Uniube

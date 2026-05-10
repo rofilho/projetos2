@@ -1,3 +1,5 @@
+﻿![Capa](assets/capa_aula01.png)
+
 # 📋 Informações da Turma
 
 ![[assets/image.png]]
