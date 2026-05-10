@@ -1,6 +1,4 @@
-﻿![Capa](assets/capa_aula01.png)
-
-# 📋 Informações da Turma
+﻿# 📋 Informações da Turma
 
 ![[assets/image.png]]
 
@@ -191,3 +189,4 @@ Para cada aula e entrega técnica, utilizaremos a base normativa da instituiçã
 - **Plano de Ensino VIA231:** Diretrizes oficiais da Uniube para Projetos Integrados 2.
 - **Ementa do Curso de Computação:** Definição de competências multidisciplinares exigidas para o semestre.
 - **Padrões IEEE/ACM:** Normas internacionais para documentação de software e engenharia de requisitos.
+
