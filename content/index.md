@@ -173,21 +173,21 @@ html, body, #quartz-root, #quartz-body, .page, .center, .center-content, article
   <div class="row-title">Conteúdo da Disciplina</div>
   <div class="row">
     <a href="./01---Informacoes-da-Turma" class="card" data-spa>
-      <div class="card-thumb">🚀<div class="card-progress-bar"><div class="card-progress" style="width: 70%"></div></div></div>
+      <div class="card-thumb" style="background-image: url('assets/capa_aula01.png'); background-size: cover; background-position: center;"><div class="card-progress-bar"><div class="card-progress" style="width: 70%"></div></div></div>
       <div class="card-content">
         <div class="card-title">📋 Informações da Turma</div>
         <div class="card-meta"><span>Acessar Aula</span><span></span></div>
       </div>
     </a>
     <a href="./02---Checklist-de-Entregas" class="card" data-spa>
-      <div class="card-thumb">🚀<div class="card-progress-bar"><div class="card-progress" style="width: 84%"></div></div></div>
+      <div class="card-thumb" style="background-image: url('assets/capa_aula02.png'); background-size: cover; background-position: center;"><div class="card-progress-bar"><div class="card-progress" style="width: 84%"></div></div></div>
       <div class="card-content">
         <div class="card-title">✅ Checklist de Entregas — Projetos Integrados 2</div>
         <div class="card-meta"><span>Acessar Aula</span><span></span></div>
       </div>
     </a>
     <a href="./03---Tabela-Mestre-de-Avaliacao" class="card" data-spa>
-      <div class="card-thumb">🚀<div class="card-progress-bar"><div class="card-progress" style="width: 40%"></div></div></div>
+      <div class="card-thumb" style="background-image: url('assets/capa_aula03.png'); background-size: cover; background-position: center;"><div class="card-progress-bar"><div class="card-progress" style="width: 40%"></div></div></div>
       <div class="card-content">
         <div class="card-title">📊 Tabela Mestre de Avaliação — Projetos Integrados 2</div>
         <div class="card-meta"><span>Acessar Aula</span><span></span></div>
@@ -198,4 +198,5 @@ html, body, #quartz-root, #quartz-body, .page, .center, .center-content, article
 </div>
 
 </div>
+
 
