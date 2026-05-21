@@ -89,7 +89,7 @@ flowchart TB
         GC["🟡 Gamma → porta 3003"]
     end
 
-    INTERNET["🌐 Internet<br>Elastic IP: XXX.XXX.XXX.XXX"]
+    INTERNET["🌐 Internet<br>Elastic IP: 54.207.120.35"]
     
     INTERNET -->|"portas 3001-3010"| VPC
     DOCKER --> GA
@@ -133,8 +133,8 @@ cat ~/.ssh/id_ed25519.pub
 ### 🔌 Passo 2: Conectar na VM via SSH
 
 ```bash
-# Substituir USUARIO e IP pelo que o professor fornecer
-ssh USUARIO@IP_DA_VM
+# Exemplo real com usuário do grupo 'alpha' e IP da VM:
+ssh alpha@54.207.120.35
 ```
 
 **Primeira conexão?** O terminal vai perguntar se confia no host — digite `yes`.
@@ -178,17 +178,17 @@ docker ps
 ### 📥 Passo 2: Clonar o repositório do grupo
 
 ```bash
-# Cada grupo trabalha na sua pasta
-mkdir -p ~/grupo-NOME
-cd ~/grupo-NOME
-
-# Clonar do GitLab (ou GitHub)
-git clone https://gitlab.com/SEU-GRUPO/SEU-PROJETO.git .
+# Cada grupo trabalha na sua pasta (exemplo para o grupo alpha)
+mkdir -p ~/grupo-alpha
+cd ~/grupo-alpha
+ 
+# Clonar o repositório do grupo
+git clone https://github.com/grupo-alpha/projeto-ia.git .
 ```
-
-> Se o repositório for **privado**, use um Personal Access Token:
+ 
+> Se o repositório for **privado**, use um Personal Access Token (Token de Acesso Pessoal):
 > ```bash
-> git clone https://oauth2:SEU_TOKEN@gitlab.com/SEU-GRUPO/SEU-PROJETO.git .
+> git clone https://oauth2:ghp_Y1a2b3c4d5e6f7g8h9i0jK@github.com/grupo-alpha/projeto-ia.git .
 > ```
 
 ### ⚙️ Passo 3: Configurar variáveis de ambiente
@@ -210,8 +210,8 @@ DB_PASS=SenhaForte123!@#
 NODE_ENV=production
 API_PORT=4000
 
-# Frontend
-REACT_APP_API_URL=http://IP_DA_VM:PORTA_DO_GRUPO
+# Frontend (Apontando para o IP da VM e porta exposta da API do grupo)
+REACT_APP_API_URL=http://54.207.120.35:4001
 ```
 
 > [!WARNING] ⚠️ Gotcha de Infraestrutura
@@ -281,18 +281,18 @@ Quando adicionamos o reverse proxy (Caddy), **fechamos a porta externa da API (r
 > [!WARNING] ⚠️ Gotcha Crítico de Rede (CORS e Localhost)
 > **O maior erro de iniciantes:** Configurar a variável `REACT_APP_API_URL` como `http://api:4000` ou `http://localhost:4000`.
 > - **Por que falha?** O React roda no **navegador do usuário** (client-side), e não dentro do servidor Docker. O navegador do usuário não sabe o que é `api` (DNS do Docker) e, se tentar acessar `localhost`, buscará a API no próprio computador do aluno!
-> - **Solução na Fase 1:** A variável deve apontar para o IP público e a porta exposta da API: `REACT_APP_API_URL=http://IP_DA_VM:4001`.
+> - **Solução na Fase 1:** A variável deve apontar para o IP público e a porta exposta da API: `REACT_APP_API_URL=http://54.207.120.35:4001`.
 > - **Solução na Fase 2:** Apontar para o domínio com HTTPS: `REACT_APP_API_URL=https://grupo-alpha.duckdns.org/api` (ou usar caminhos relativos `/api` se o Caddy estiver configurado corretamente).
 
 **Tabela de portas por grupo (definida pelo professor):**
 
 | Grupo | Porta Frontend (Fase 1 e 2) | Porta API (Apenas Fase 1) | Acesso Inicial (Fase 1) |
 |-------|-----------------------------|---------------------------|-------------------------|
-| 🔵 Alpha | 3001 | 4001 | Frontend: `http://IP:3001` <br> API: `http://IP:4001` |
-| 🟢 Beta | 3002 | 4002 | Frontend: `http://IP:3002` <br> API: `http://IP:4002` |
-| 🟡 Gamma | 3003 | 4003 | Frontend: `http://IP:3003` <br> API: `http://IP:4003` |
-| 🔴 Delta | 3004 | 4004 | Frontend: `http://IP:3004` <br> API: `http://IP:4004` |
-| 🟣 Epsilon | 3005 | 4005 | Frontend: `http://IP:3005` <br> API: `http://IP:4005` |
+| 🔵 Alpha | 3001 | 4001 | Frontend: `http://54.207.120.35:3001` <br> API: `http://54.207.120.35:4001` |
+| 🟢 Beta | 3002 | 4002 | Frontend: `http://54.207.120.35:3002` <br> API: `http://54.207.120.35:4002` |
+| 🟡 Gamma | 3003 | 4003 | Frontend: `http://54.207.120.35:3003` <br> API: `http://54.207.120.35:4003` |
+| 🔴 Delta | 3004 | 4004 | Frontend: `http://54.207.120.35:3004` <br> API: `http://54.207.120.35:4004` |
+| 🟣 Epsilon | 3005 | 4005 | Frontend: `http://54.207.120.35:3005` <br> API: `http://54.207.120.35:4005` |
 
 > Editem o arquivo `.env` do grupo com as portas corretas:
 > ```env
@@ -335,14 +335,12 @@ grupo-fe-1    frontend    running   0.0.0.0:3001->3000/tcp
 ## 📌 3. IP Público + DNS Gratuito + HTTPS [Hands-On ⏳ 25 min]
 
 ### 🌐 Testando o acesso via IP
-
+ 
 Agora que os containers estão rodando, abra o navegador no seu PC e acesse:
-
+ 
 ```
-http://IP_DA_VM:SUA_PORTA
+http://54.207.120.35:3001
 ```
-
-**Exemplo:** `http://54.207.120.35:3001`
 
 Se a tela do seu frontend apareceu — **sua aplicação está online!** 🎉
 
@@ -356,7 +354,7 @@ O [[DuckDNS]] é um serviço gratuito de DNS dinâmico que dá subdomínios `.du
 2. Faça login com sua conta **GitHub**
 3. No campo "sub domain", digite o nome desejado (ex: `grupo-alpha`)
 4. Clique em **"add domain"**
-5. No campo "current ip", coloque o **IP Público da VM** (fornecido pelo professor)
+5. No campo "current ip", coloque o **IP Público da VM** (ex: `54.207.120.35`)
 6. Clique em **"update ip"**
 
 **Pronto!** Agora `grupo-alpha.duckdns.org` aponta para sua VM.
