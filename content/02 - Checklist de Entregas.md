@@ -1,11 +1,11 @@
-﻿# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# ✅ Checklist de Entregas — Projetos Integrados 2
 
 > 📚 **Disciplina:** VIA231 — Projetos Integrados 2 👨‍🏫 **Professor:** Romualdo Mathias Filho 🏫 **Semestre:** 2026/1 — Uniube
 > 
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **📌 Como funciona a avaliação?**
 
 Cada Checkpoint (CP) vale **10 pontos**, distribuídos em 4 critérios:
 
@@ -21,7 +21,7 @@ Cada Checkpoint (CP) vale **10 pontos**, distribuídos em 4 critérios:
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **🗓️ Cronograma dos Checkpoints**
 
 | **CP** | **Semana** | **Data** | **Marco** |
 | --- | --- | --- | --- |
@@ -33,11 +33,11 @@ Cada Checkpoint (CP) vale **10 pontos**, distribuídos em 4 critérios:
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **📂 Documentação de Gestão Obrigatória**
 
 Além do código, cada grupo **deve manter documentação de gestão** no repositório GitLab, na pasta `/docs`.
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **Estrutura esperada no repositório**
 
 ```
 
@@ -52,52 +52,52 @@ docs/
 └── relatorio_final.md
 ```
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **📝 Ata de Reunião**
 
 Registro formal das decisões de cada reunião do grupo.
 
 **Mínimo de 12 atas ao longo do semestre** (≈ 1 por semana).
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **Template — Ata de Reunião**
 
 ```
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# Ata de Reunião — Semana SXX
 
 Data: DD/MM/AAAA
 Horário: HH:MM – HH:MM
 Local/Plataforma: Presencial / Discord / Meet
 Grupo: [Nome do Grupo]
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## Participantes
 | Nome | Presente |
 |------|----------|
 | Nome | ✅ / ❌  |
 | Nome | ✅ / ❌  |
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## Pauta
 1. [Tópico 1]
 2. [Tópico 2]
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## Decisões Tomadas
 - Decisão 1
 - Decisão 2
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## Tarefas Definidas
 | Tarefa | Responsável | Prazo |
 |--------|------------|-------|
 | Tarefa X | Nome | DD/MM |
 | Tarefa Y | Nome | DD/MM |
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## Pendências Anteriores
 - [x] Tarefa concluída
 - [ ] Tarefa pendente
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## Observações
 Anotações relevantes.
 ```
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **📋 Documentos obrigatórios**
 
 | **Documento** | **Quando** | **Descrição** |
 | --- | --- | --- |
@@ -112,12 +112,12 @@ Anotações relevantes.
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **🗄️ CP-1 — Banco de Dados**
 
 > 📅 **Semana 4 · 12/03/2026** 🎯 **Objetivo:** Script SQL funcional + Modelo ER documentado
 > 
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **💻 Entregáveis técnicos**
 
 - Modelo Entidade-Relacionamento (ER) — diagrama visual (dbdiagram.io, draw.io, etc.)
 - Script SQL de criação — DDL com tabelas, PKs e FKs
@@ -125,20 +125,20 @@ Anotações relevantes.
 - Banco rodando — demonstrar banco ativo (local ou Docker)
 - Documentação no README — explicar tabelas e relacionamentos
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **📝 Documentos de gestão**
 
 - Termo de Abertura do Projeto na pasta `/docs`
 - Cronograma do projeto (CP-1 a CP-5)
 - Mínimo 2 atas de reunião (semanas S3 e S4)
 - Board/Kanban configurado no GitLab (Issues + labels + responsáveis)
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🦊 GitLab**
 
 - Repositório criado e organizado (pastas `/database`, `/docs`, etc.)
 - Commits descritivos — mínimo 1 por membro
 - Todos os membros como colaboradores no projeto
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🎤 Apresentação**
 
 - Explicar o problema que o sistema resolve
 - Mostrar o diagrama ER e justificar as tabelas
@@ -146,12 +146,12 @@ Anotações relevantes.
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **⚙️ CP-2 — Backend / API CRUD**
 
 > 📅 **Semana 6 · 26/03/2026** 🎯 **Objetivo:** API CRUD funcional conectada ao banco do CP-1
 > 
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **💻 Entregáveis técnicos**
 
 - Pelo menos 2 endpoints CRUD (Create, Read, Update, Delete)
 - Conexão ao banco de dados do CP-1 funcionando
@@ -159,20 +159,20 @@ Anotações relevantes.
 - Tratamento básico de erros (status codes: 200, 201, 400, 404, 500)
 - Documentação da API — rotas, métodos, parâmetros, respostas
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **📝 Documentos de gestão**
 
 - Mínimo 2 atas novas (semanas S5 e S6)
 - Board/Kanban atualizado — tarefas do CP-2 movidas para "Done"
 - Cronograma atualizado — marcar concluído, ajustar pendente
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🦊 GitLab**
 
 - Código da API em pasta organizada (`/backend` ou `/api`)
 - Commits semanais com mensagens descritivas
 - `.gitignore` configurado (não commitar `node_modules`, `.env`)
 - README atualizado com instruções de como rodar
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🎤 Apresentação**
 
 - Explicar a arquitetura da API (rotas, controllers, models)
 - Demonstrar cada endpoint ao vivo (Postman ou similar)
@@ -180,12 +180,12 @@ Anotações relevantes.
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **🔗 CP-3 — Integração Frontend + API**
 
 > 📅 **Semana 9 · 16/04/2026** 🎯 **Objetivo:** Frontend consumindo a API com operações funcionais
 > 
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **💻 Entregáveis técnicos**
 
 - Telas do frontend criadas — pelo menos as telas principais
 - Consumo da API — requisições HTTP (fetch, axios, etc.)
@@ -193,20 +193,20 @@ Anotações relevantes.
 - Feedback visual — mensagens de sucesso/erro para o usuário
 - Navegação funcional — menu, rotas ou links entre telas
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **📝 Documentos de gestão**
 
 - Mínimo 3 atas novas (semanas S7, S8 e S9)
 - Board/Kanban atualizado — tarefas do CP-3 organizadas
 - Cronograma atualizado — progresso até metade do semestre
 - Retrospectiva breve — o que deu certo, o que melhorar (pode ser na ata)
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🦊 GitLab**
 
 - Código do frontend no repositório (`/frontend` ou `/client`)
 - Commits de todos os membros — distribuição equilibrada
 - Issues ou boards usados para organizar tarefas
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🎤 Apresentação**
 
 - Demonstrar fluxo completo: frontend → API → banco → tela
 - Mostrar pelo menos 1 operação de cada tipo do CRUD
@@ -214,12 +214,12 @@ Anotações relevantes.
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **🚀 CP-4 — MVP Completo**
 
 > 📅 **Semana 12 · 07/05/2026** 🎯 **Objetivo:** Fluxo completo end-to-end funcionando
 > 
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **💻 Entregáveis técnicos**
 
 - Fluxo principal funcionando — tarefa central do sistema OK
 - Validações implementadas — campos obrigatórios, formatos, regras de negócio
@@ -227,21 +227,21 @@ Anotações relevantes.
 - Interface polida — responsiva, sem telas quebradas
 - Integração completa — Frontend + Backend + Banco 100% conectados
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **📝 Documentos de gestão**
 
 - Mínimo 3 atas novas (semanas S10, S11 e S12)
 - Board/Kanban atualizado — tarefas finais antes do MVP
 - Cronograma atualizado — status antes da reta final
 - Lista de bugs/pendências — Issues abertas no GitLab
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🦊 GitLab**
 
 - Histórico de commits consistente ao longo das semanas
 - Uso de branches para features (`feature/login`, `feature/dashboard`)
 - Merge requests documentados (diferencial)
 - README completo: descrição, stack, como instalar e rodar
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🎤 Apresentação**
 
 - Demo do fluxo completo (cadastro → login → operação → resultado)
 - Explicar decisões técnicas e desafios enfrentados
@@ -249,12 +249,12 @@ Anotações relevantes.
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **🌐 CP-5 — Hospedagem + README Final**
 
 > 📅 **Semana 14 · 21/05/2026** 🎯 **Objetivo:** Sistema hospedado online + documentação final
 > 
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **💻 Entregáveis técnicos**
 
 - Sistema hospedado e acessível via URL (Vercel, Render, Railway, etc.)
 - Banco de dados em produção (Supabase, PlanetScale, ElephantSQL, etc.)
@@ -269,7 +269,7 @@ Anotações relevantes.
     - Membros da equipe
 - Código limpo — sem console.log de debug, sem comentários desnecessários
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **📝 Documentos de gestão**
 
 - Mínimo 2 atas novas (semanas S13 e S14)
 - Todas as atas do semestre compiladas em `/docs/atas`
@@ -277,14 +277,14 @@ Anotações relevantes.
 - Relatório final — 1 página: planejado vs. entregue + lições aprendidas
 - Cronograma final — versão final: cumprido vs. planejado
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🦊 GitLab**
 
 - Repositório público ou compartilhado com o professor
 - Tags ou releases marcando versões importantes
 - Histórico limpo e organizado
 - Pasta `/docs` completa com toda documentação do semestre
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **🎤 Apresentação**
 
 - Acessar o sistema pela URL ao vivo
 - Demo completa do sistema em produção
@@ -292,7 +292,7 @@ Anotações relevantes.
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **🏆 AMOSTRATEC — Avaliação Final (N2)**
 
 > 🎓 A AMOSTRATEC é a avaliação final do semestre, separada dos checkpoints.
 > 
@@ -304,7 +304,7 @@ Anotações relevantes.
 | 🛡️ Qualidade do código + Defesa técnica | 15 pts |
 | **Total** | **50 pts** |
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+## **O que precisa estar pronto**
 
 - Sistema 100% funcional e hospedado
 - Todos os membros preparados para defesa técnica
@@ -313,7 +313,7 @@ Anotações relevantes.
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **📊 Cálculo da Nota Final**
 
 | **Componente** | **Valor** |
 | --- | --- |
@@ -326,7 +326,7 @@ Anotações relevantes.
 
 ---
 
-# 🖥️ Aula - 02: Checklist de Entregas — Projetos Integrados 2
+# **⚡ Dicas para se dar bem**
 
 > 🔥 **1. Commitem com frequência!** Commits semanais são avaliados. Não façam tudo na última hora.
 > 
@@ -362,6 +362,3 @@ Anotações relevantes.
 
 > 📅 Atualizado em: 26/03/2026 📌 Projetos Integrados 2 (VIA231) — Uniube 2026/1
 >
-
-
-

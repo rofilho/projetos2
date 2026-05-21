@@ -161,7 +161,7 @@ html, body, #quartz-root, #quartz-body, .page, .center, .center-content, article
     <span class="tag">▶ Continue Estudando</span>
     <h1>🚀 Projetos Integrados II</h1>
     <p>Gerenciamento de projetos, metodologias ágeis e documentação.</p>
-    <a href="./03---Tabela-Mestre-de-Avaliacao" class="btn" data-spa>Retomar: 📊 Tabela Mestre de Avaliação — Projetos Integrados 2</a>
+    <a href="./Aula-CP5---Deploy-na-Nuvem" class="btn" data-spa>Retomar: 🟢 Aula CP5: Deploy na Nuvem — Hospedagem, DNS e Segurança</a>
   </div>
 </div>
 
@@ -189,7 +189,13 @@ html, body, #quartz-root, #quartz-body, .page, .center, .center-content, article
         <div class="card-meta"><span>Acessar Aula</span><span></span></div>
       </div>
     </a>
-
+    <a href="./Aula-CP5---Deploy-na-Nuvem" class="card" data-spa>
+      <div class="card-thumb" style="background-image: url('assets/image.png'); background-size: cover; background-position: center;"><div class="card-progress-bar"><div class="card-progress" style="width: 10%"></div></div></div>
+      <div class="card-content">
+        <div class="card-title">🟢 Aula CP5: Deploy na Nuvem — Hospedagem, DNS e Segurança</div>
+        <div class="card-meta"><span>Acessar Aula</span><span></span></div>
+      </div>
+    </a>
   </div>
 </div>
 

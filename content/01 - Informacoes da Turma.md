@@ -1,4 +1,4 @@
-﻿# 🖥️ Aula - 01: Informações da Turma
+# 📋 Informações da Turma
 
 ![[assets/image.png]]
 
@@ -15,17 +15,17 @@
 
 ---
 
-# 🖥️ Aula - 01: Informações da Turma
+## 📌 1. Visão Geral e Filosofia
 
 A disciplina foca na construção de um **Produto Mínimo Viável, MVP**, versão funcional mais simples capaz de resolver um problema real.
 
-# 🖥️ Aula - 01: Informações da Turma
+### Metodologia
 
 Modelo: Aprendizagem Baseada em Problemas, PBL
 
 Objetivo: Desenvolver maturidade técnica, autonomia e colaboração em equipe.
 
-# 🖥️ Aula - 01: Informações da Turma
+### Tecnologias
 
 Stack de livre escolha, desde que defenda e argumente, por exemplo:
 
@@ -36,7 +36,7 @@ Stack de livre escolha, desde que defenda e argumente, por exemplo:
 - PostgreSQL
 - Outras
 
-# 🖥️ Aula - 01: Informações da Turma
+### Requisito Final
 
 Hospedagem pública acessível via URL válida, por exemplo:
 
@@ -47,7 +47,7 @@ Hospedagem pública acessível via URL válida, por exemplo:
 
 ---
 
-# 🖥️ Aula - 01: Informações da Turma
+## 💻 2. Gestão Técnica: Ecossistema GitLab
 
 Todo o projeto deve ser rastreável por meio de repositório oficial.
 
@@ -55,13 +55,13 @@ Todo o projeto deve ser rastreável por meio de repositório oficial.
 
 [https://gitlab.com/uniube-pi2-2026-1](https://gitlab.com/uniube-pi2-2026-1)
 
-# 🖥️ Aula - 01: Informações da Turma
+### Regras de Versionamento
 
 - Commits semanais obrigatórios
 - Mensagens descritivas e objetivas
 - Histórico deve comprovar evolução e autoria
 
-# 🖥️ Aula - 01: Informações da Turma
+### Estrutura Obrigatória
 
 ```
 /src
@@ -87,14 +87,14 @@ README.md
 
 ---
 
-# 🖥️ Aula - 01: Informações da Turma
+## 🔍 3. Dinâmica de Avaliação: Checkpoints, CP
 
 Checkpoints quinzenais presenciais.
 
 - Valor por CP: 10 pontos
 - Total N1: 50 pontos
 
-# 🖥️ Aula - 01: Informações da Turma
+### Composição da Nota por Checkpoint
 
 | Critério | Pontos |
 | --- | --- |
@@ -102,7 +102,7 @@ Checkpoints quinzenais presenciais.
 | Documentação | 3 pts |
 | Live Coding | 3 pts |
 
-# 🖥️ Aula - 01: Informações da Turma
+### Detalhamento:
 
 **→ Execução Técnica**
 
@@ -118,7 +118,7 @@ Defesa técnica com modificação ao vivo no código.
 
 ---
 
-# 🖥️ Aula - 01: Informações da Turma
+## 🛑 Protocolo de Live Coding, Política Anti-IA
 
 Durante o live coding:
 
@@ -126,7 +126,7 @@ Durante o live coding:
 - Deve realizar uma modificação lógica no sistema
 - Exemplo: adicionar filtro em query SQL ou criar novo endpoint na API
 
-# 🖥️ Aula - 01: Informações da Turma
+### Regras
 
 Proibido:
 
@@ -144,7 +144,7 @@ Objetivo: validar domínio real do código e compreensão arquitetural.
 
 ---
 
-# 🖥️ Aula - 01: Informações da Turma
+## 📅 4. Cronograma Operativo 2026/1
 
 Alinhado ao calendário acadêmico oficial da Uniube Uberlândia.
 
@@ -163,18 +163,18 @@ Alinhado ao calendário acadêmico oficial da Uniube Uberlândia.
 
 ---
 
-# 🖥️ Aula - 01: Informações da Turma
+## 🏆 5. AMOSTRATEC, Avaliação Final, N2
 
 Valor total: 50 pontos
 
 Defesa pública do MVP funcional hospedado em nuvem, com histórico completo de commits.
 
-# 🖥️ Aula - 01: Informações da Turma
+### Banca
 
 - Professor titular
 - Convidados avaliadores
 
-# 🖥️ Aula - 01: Informações da Turma
+### Critérios de Avaliação
 
 | Critério | Pontos |
 | --- | --- |
@@ -182,13 +182,10 @@ Defesa pública do MVP funcional hospedado em nuvem, com histórico completo de 
 | Hospedagem estável e escalável | 10 pts |
 | Qualidade técnica e defesa oral | 15 pts |
 
-# 🖥️ Aula - 01: Informações da Turma
+### 📚 6. Referências e Fundamentação Acadêmica
 
 Para cada aula e entrega técnica, utilizaremos a base normativa da instituição e padrões da área de computação:
 
 - **Plano de Ensino VIA231:** Diretrizes oficiais da Uniube para Projetos Integrados 2.
 - **Ementa do Curso de Computação:** Definição de competências multidisciplinares exigidas para o semestre.
 - **Padrões IEEE/ACM:** Normas internacionais para documentação de software e engenharia de requisitos.
-
-
-
