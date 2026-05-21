@@ -13,7 +13,7 @@ tags:
   - docker
   - cloud
   - aws
-  - azure
+  - aws-academy
   - dns
   - ssl
   - hardening
@@ -28,16 +28,17 @@ publicar: true
 **Semana:** 14 | Quarta-feira, 21/05/2026
 **Professor:** Romualdo Mathias Filho
 **Tipo:** 🔬 100% Prática (Hands-On)
-**Tópicos:** AWS EC2, Docker Compose em Produção, IP Público, DNS Gratuito, SSL/HTTPS, Hardening
+**Tópicos:** AWS Academy Learner Lab, EC2, Docker Compose em Produção, DNS Gratuito, SSL/HTTPS, Hardening
 
 ---
 
 > [!INFO] 🎯 Visão Geral da Aula & Recursos
-> **Hoje seu projeto sai do localhost e vai para o mundo.** Vocês vão colocar a aplicação do grupo online em uma VM na nuvem, com domínio próprio e HTTPS — exatamente como um sistema real em produção.
+> **Hoje seu projeto sai do localhost e vai para o mundo.** Cada grupo vai criar seu próprio servidor na AWS, colocar a aplicação online com domínio próprio e HTTPS — exatamente como um sistema real em produção.
 >
 > **O que você vai dominar:**
-> - 🚀 Conectar na VM via SSH e subir sua stack completa com `docker compose`
-> - 🌐 Acessar sua aplicação por uma URL real (`grupo.duckdns.org`) com HTTPS
+> - 🏗️ Criar uma instância EC2 na AWS e instalar Docker na nuvem
+> - 🚀 Subir sua stack completa (DB + Backend + Frontend) com `docker compose`
+> - 🌐 Acessar sua aplicação por uma URL real (`meu-grupo.duckdns.org`) com HTTPS
 > - 🛡️ Aplicar as primeiras camadas de segurança (firewall, SSH seguro, Fail2Ban)
 >
 > **📂 Recursos para Download:**
@@ -50,9 +51,9 @@ publicar: true
 ## 🎯 Objetivo da Aula
 
 Ao final desta aula, os alunos serão capazes de:
-- Conectar via SSH em uma VM na nuvem e preparar o ambiente Docker
+- Criar e configurar uma instância EC2 na AWS usando o Learner Lab
 - Realizar o deploy completo de uma aplicação containerizada (DB + Backend + Frontend) em produção
-- Registrar um subdomínio DNS gratuito e configurar HTTPS automático
+- Registrar um subdomínio DNS gratuito e configurar HTTPS automático com Caddy
 - Aplicar práticas básicas de hardening em um servidor de produção
 
 ---
@@ -67,82 +68,134 @@ Ao final desta aula, os alunos serão capazes de:
 
 ---
 
-## 📌 1. Acessando a VM na Nuvem [Hands-On ⏳ 25 min]
+## 📌 1. Criando sua VM na Nuvem (AWS Academy) [Hands-On ⏳ 25 min]
 
-### 🏗️ Arquitetura da Nuvem
+### 🏗️ Arquitetura — Cada Grupo com sua VM
 
-Antes de colocar a mão na massa, vamos entender o que o professor já preparou para vocês:
+Diferente de um ambiente corporativo onde o DevOps prepara a infra, hoje **vocês vão criar o servidor do zero**. Cada grupo terá sua própria máquina virtual (EC2) na AWS:
 
 ```mermaid
 flowchart TB
-    subgraph AWS["☁️ AWS — EC2 Compartilhada"]
+    subgraph AWS["☁️ AWS Academy — Learner Lab"]
         direction TB
-        VPC["🔒 VPC + Security Group<br>Portas: 22, 80, 443, 3001-3010"]
-        VM["🖥️ EC2 · Ubuntu 22.04<br>t3.medium · Elastic IP"]
-        DOCKER["🐳 Docker Engine<br>+ Docker Compose v2"]
-        VPC --> VM --> DOCKER
+        subgraph GA["🔵 Grupo Alpha"]
+            EC2A["🖥️ EC2 · Ubuntu 22.04<br>t3.small · IP Público"]
+            DA["🐳 Docker: DB + API + Frontend + Caddy"]
+            EC2A --> DA
+        end
+
+        subgraph GB["🟢 Grupo Beta"]
+            EC2B["🖥️ EC2 · Ubuntu 22.04<br>t3.small · IP Público"]
+            DB["🐳 Docker: DB + API + Frontend + Caddy"]
+            EC2B --> DB
+        end
     end
 
-    subgraph GRUPOS["👥 Grupos (cada um na sua porta)"]
-        GA["🔵 Alpha → porta 3001"]
-        GB["🟢 Beta → porta 3002"]
-        GC["🟡 Gamma → porta 3003"]
-    end
-
-    INTERNET["🌐 Internet<br>Elastic IP: 54.207.120.35"]
+    DNSA["🦆 alpha.duckdns.org"]
+    DNSB["🦆 beta.duckdns.org"]
     
-    INTERNET -->|"portas 3001-3010"| VPC
-    DOCKER --> GA
-    DOCKER --> GB
-    DOCKER --> GC
+    DNSA --> EC2A
+    DNSB --> EC2B
+    
+    INTERNET["🌐 Internet (HTTPS)"] --> DNSA
+    INTERNET --> DNSB
 ```
-
-**Equivalência AWS ↔ Azure (para quem quiser replicar):**
-
-| Conceito | AWS | Azure |
-|----------|-----|-------|
-| VM | **EC2** (Elastic Compute Cloud) | **Azure VM** |
-| Rede privada | **VPC** (Virtual Private Cloud) | **VNet** (Virtual Network) |
-| Firewall de rede | **Security Group** | **NSG** (Network Security Group) |
-| IP fixo público | **Elastic IP** | **Public IP** (Static) |
-| Par de chaves SSH | **Key Pair** (EC2) | **SSH Public Key** |
-| Armazenamento disco | **EBS** (Elastic Block Store) | **Managed Disk** |
 
 > [!TIP] 💡 Dica de Produção (Pro-Tip)
-> Em empresas como Nubank e iFood, cada aplicação roda em sua **própria instância EC2 ou cluster ECS/EKS**. Aqui estamos compartilhando uma EC2 por questão didática, mas o fluxo de deploy (SSH → clone → compose up) é **idêntico** ao do mundo real. Os mesmos comandos Docker funcionam em qualquer nuvem — AWS, Azure, GCP — essa é a portabilidade dos containers.
+> Em empresas como Nubank e iFood, cada aplicação roda em sua **própria instância EC2 ou cluster ECS/EKS** — exatamente como vocês estão fazendo agora! O fluxo de deploy (criar VM → instalar Docker → clone → compose up) é **idêntico** ao do mundo real.
 
-### 🔑 Passo 1: Gerar sua chave SSH (no seu PC)
+### 🖥️ Passo 1: Acessar o AWS Academy Learner Lab
 
-Se você ainda não tem um par de chaves SSH, gere agora:
+1. Acesse o **Canvas** da disciplina
+2. Clique em **"AWS Academy Learner Lab"**
+3. Clique em **"Start Lab"** (o indicador fica 🟢 verde quando pronto — aguarde ~2 min)
+4. Clique em **"AWS"** (abre o Console AWS em uma nova aba)
 
+### 🔑 Passo 2: Baixar a chave SSH do laboratório
+
+Antes de criar a VM, baixe a chave de acesso:
+
+1. Na página do Learner Lab, clique em **"AWS Details"**
+2. Clique em **"Download PEM"** (ou **Download PPK** se usar PuTTY no Windows)
+3. Salve o arquivo `labsuser.pem` em uma pasta conhecida (ex: `~/Downloads/`)
+
+**No Linux/Mac**, defina as permissões corretas:
 ```bash
-# Windows (PowerShell) ou Linux/Mac (Terminal)
-ssh-keygen -t ed25519 -C "seu-email@aluno.uniube.br"
+chmod 400 ~/Downloads/labsuser.pem
 ```
 
-- Pressione **Enter** para aceitar o caminho padrão (`~/.ssh/id_ed25519`)
-- Defina uma senha (passphrase) ou deixe em branco para testes
+> [!WARNING] ⚠️ Gotcha de Infraestrutura
+> **Nunca compartilhe o arquivo `labsuser.pem`!** Ele é sua chave privada — qualquer pessoa com este arquivo pode acessar seus servidores. Se vazou, encerre o lab e inicie um novo.
 
-Depois, **copie sua chave pública** e envie para o professor:
+### 🏗️ Passo 3: Criar a instância EC2
+
+No Console AWS (a aba que abriu no passo 1):
+
+1. Pesquise **"EC2"** na barra de busca → clique em **EC2**
+2. Clique em **"Launch instance"** (botão laranja)
+3. Configure:
+
+| Campo | Valor |
+|-------|-------|
+| **Name** | `deploy-NOME-DO-GRUPO` (ex: `deploy-alpha`) |
+| **AMI** | Ubuntu Server 22.04 LTS (Free tier eligible) |
+| **Instance type** | `t3.small` (2 vCPU, 2 GB RAM) |
+| **Key pair** | Selecione **`vockey`** |
+| **Security Group** | Clique em **"Create security group"** → marque ✅ **Allow SSH**, ✅ **Allow HTTPS**, ✅ **Allow HTTP** |
+
+4. Clique em **"Launch instance"** 🚀
+
+**Aguarde ~1 minuto** e sua VM estará rodando!
+
+### 🌐 Passo 4: Descobrir o IP Público da VM
+
+1. No painel EC2, clique em **"Instances"**
+2. Clique no nome da sua instância (`deploy-alpha`)
+3. Copie o **"Public IPv4 address"** (ex: `54.89.123.45`)
+
+> ⚠️ **Atenção:** Este IP é temporário — ele muda se você parar e reiniciar a instância. Para a aula de hoje, isso não é problema.
+
+### 🔌 Passo 5: Conectar na VM via SSH
 
 ```bash
-# Mostrar a chave pública (copie o conteúdo inteiro)
-cat ~/.ssh/id_ed25519.pub
-```
-
-### 🔌 Passo 2: Conectar na VM via SSH
-
-```bash
-# Exemplo real com usuário do grupo 'alpha' e IP da VM:
-ssh alpha@54.207.120.35
+# Substituir pelo IP que você copiou no passo anterior
+ssh -i ~/Downloads/labsuser.pem ubuntu@54.89.123.45
 ```
 
 **Primeira conexão?** O terminal vai perguntar se confia no host — digite `yes`.
 
 Se conectou, parabéns! Você está dentro de um servidor na nuvem. 🎉
 
-> [!WARNING] ⚠️ Gotcha de Infraestrutura
-> **Nunca compartilhe sua chave privada** (`id_ed25519` sem `.pub`). A chave privada é como a senha da sua casa — só a pública (`id_ed25519.pub`) é segura para compartilhar. Se vazou a privada, gere um novo par imediatamente.
+### ⚙️ Passo 6: Instalar Docker na VM
+
+A VM vem "limpa" — precisamos instalar o Docker e o Git:
+
+```bash
+# Atualizar o sistema
+sudo apt update && sudo apt upgrade -y
+
+# Instalar Docker (script oficial)
+curl -fsSL https://get.docker.com | sudo sh
+
+# Adicionar seu usuário ao grupo docker (evita precisar de sudo)
+sudo usermod -aG docker ubuntu
+newgrp docker
+
+# Instalar Git
+sudo apt install -y git
+
+# Verificar se tudo está instalado
+docker --version
+docker compose version
+git --version
+```
+
+**Resultado esperado:**
+```
+Docker version 27.x.x
+Docker Compose version v2.x.x
+git version 2.x.x
+```
 
 ### 🧠 Checkpoint: Teste seu Conhecimento!
 
@@ -162,36 +215,25 @@ Se conectou, parabéns! Você está dentro de um servidor na nuvem. 🎉
 
 ---
 
-## 📌 2. Subindo a Aplicação com Docker Compose [Hands-On ⏳ 30 min]
+## 📌 2. Subindo a Aplicação com Docker Compose [Hands-On ⏳ 25 min]
 
-### 📦 Passo 1: Verificar Docker na VM
-
-```bash
-# Confirmar que Docker está instalado e rodando
-docker --version
-docker compose version
-
-# Ver se há containers de outros grupos rodando
-docker ps
-```
-
-### 📥 Passo 2: Clonar o repositório do grupo
+### 📥 Passo 1: Clonar o repositório do grupo
 
 ```bash
-# Cada grupo trabalha na sua pasta (exemplo para o grupo alpha)
-mkdir -p ~/grupo-alpha
-cd ~/grupo-alpha
- 
-# Clonar o repositório do grupo
+# Criar pasta e clonar o projeto
+mkdir -p ~/meu-projeto
+cd ~/meu-projeto
+
+# Clonar o repositório do grupo (exemplo)
 git clone https://github.com/grupo-alpha/projeto-ia.git .
 ```
- 
+
 > Se o repositório for **privado**, use um Personal Access Token (Token de Acesso Pessoal):
 > ```bash
 > git clone https://oauth2:ghp_Y1a2b3c4d5e6f7g8h9i0jK@github.com/grupo-alpha/projeto-ia.git .
 > ```
 
-### ⚙️ Passo 3: Configurar variáveis de ambiente
+### ⚙️ Passo 2: Configurar variáveis de ambiente
 
 ```bash
 # Copiar o arquivo de exemplo e editar
@@ -208,10 +250,11 @@ DB_PASS=SenhaForte123!@#
 
 # Backend
 NODE_ENV=production
-API_PORT=4000
 
-# Frontend (Apontando para o IP da VM e porta exposta da API do grupo)
-REACT_APP_API_URL=http://54.207.120.35:4001
+# Frontend — Na Fase 1 (teste), aponte para o IP público:
+REACT_APP_API_URL=http://SEU_IP_PUBLICO:4000
+# Na Fase 2 (com Caddy/HTTPS), mude para caminho relativo:
+# REACT_APP_API_URL=/api
 ```
 
 > [!WARNING] ⚠️ Gotcha de Infraestrutura
@@ -219,17 +262,14 @@ REACT_APP_API_URL=http://54.207.120.35:4001
 > ```bash
 > echo ".env" >> .gitignore
 > ```
-> Credenciais vazadas no GitLab são o erro #1 de segurança de projetos universitários.
+> Credenciais vazadas no GitHub são o erro #1 de segurança de projetos universitários.
 
-### 🐳 Passo 4: Ajustar o docker-compose.yml para produção
+### 🐳 Passo 3: Preparar o docker-compose.yml para produção
 
-Em produção, precisamos separar as duas fases de deploy da nossa aplicação:
-
-#### 🔄 Fase 1: Acesso Direto (Sem Caddy - Para Testes Iniciais)
-Nesta fase, para que o navegador no seu computador local consiga conversar com a API e o frontend, **precisamos expor ambas as portas**. Caso contrário, você terá um erro de conexão de rede.
+Como cada grupo tem sua **própria VM**, não precisamos mapear portas por grupo. Começamos com acesso direto para testar:
 
 ```yaml
-# docker-compose.yml — Modelo para Fase 1 (Acesso Direto via IP)
+# docker-compose.yml — Fase 1 (Teste via IP Público)
 services:
   db:
     image: postgres:16-alpine
@@ -248,7 +288,7 @@ services:
     build: ./backend
     restart: unless-stopped
     ports:
-      - "${PORTA_API:-4001}:4000"  # 🟢 Exposta temporariamente para a internet na Fase 1
+      - "4000:4000"  # 🟡 Exposta temporariamente para testes (remover na Fase 2)
     environment:
       DATABASE_URL: postgres://${DB_USER}:${DB_PASS}@db:5432/${DB_NAME}
       NODE_ENV: production
@@ -261,7 +301,7 @@ services:
     build: ./frontend
     restart: unless-stopped
     ports:
-      - "${PORTA_EXTERNA:-3001}:3000"  # 🟢 Exposta para o tráfego do frontend
+      - "80:3000"  # 🟢 Acesso direto via IP na porta 80
     depends_on:
       - api
     networks:
@@ -275,38 +315,19 @@ networks:
     driver: bridge
 ```
 
-#### 🔒 Fase 2: Produção Segura (Com Caddy - Fechando as Portas)
-Quando adicionamos o reverse proxy (Caddy), **fechamos a porta externa da API (removendo `ports:` da api)**. Todo o tráfego de fora entra unicamente pela porta `443` do Caddy, que faz o roteamento interno pela rede do [[Docker]]. Isso protege sua API contra ataques diretos e resolve 100% dos erros de CORS!
-
 > [!WARNING] ⚠️ Gotcha Crítico de Rede (CORS e Localhost)
 > **O maior erro de iniciantes:** Configurar a variável `REACT_APP_API_URL` como `http://api:4000` ou `http://localhost:4000`.
 > - **Por que falha?** O React roda no **navegador do usuário** (client-side), e não dentro do servidor Docker. O navegador do usuário não sabe o que é `api` (DNS do Docker) e, se tentar acessar `localhost`, buscará a API no próprio computador do aluno!
-> - **Solução na Fase 1:** A variável deve apontar para o IP público e a porta exposta da API: `REACT_APP_API_URL=http://54.207.120.35:4001`.
-> - **Solução na Fase 2:** Apontar para o domínio com HTTPS: `REACT_APP_API_URL=https://grupo-alpha.duckdns.org/api` (ou usar caminhos relativos `/api` se o Caddy estiver configurado corretamente).
+> - **Solução na Fase 1:** A variável deve apontar para o IP público: `REACT_APP_API_URL=http://54.89.123.45:4000`.
+> - **Solução na Fase 2:** Usar caminho relativo: `REACT_APP_API_URL=/api` (o Caddy roteia automaticamente).
 
-**Tabela de portas por grupo (definida pelo professor):**
-
-| Grupo | Porta Frontend (Fase 1 e 2) | Porta API (Apenas Fase 1) | Acesso Inicial (Fase 1) |
-|-------|-----------------------------|---------------------------|-------------------------|
-| 🔵 Alpha | 3001 | 4001 | Frontend: `http://54.207.120.35:3001` <br> API: `http://54.207.120.35:4001` |
-| 🟢 Beta | 3002 | 4002 | Frontend: `http://54.207.120.35:3002` <br> API: `http://54.207.120.35:4002` |
-| 🟡 Gamma | 3003 | 4003 | Frontend: `http://54.207.120.35:3003` <br> API: `http://54.207.120.35:4003` |
-| 🔴 Delta | 3004 | 4004 | Frontend: `http://54.207.120.35:3004` <br> API: `http://54.207.120.35:4004` |
-| 🟣 Epsilon | 3005 | 4005 | Frontend: `http://54.207.120.35:3005` <br> API: `http://54.207.120.35:4005` |
-
-> Editem o arquivo `.env` do grupo com as portas corretas:
-> ```env
-> PORTA_EXTERNA=3001
-> PORTA_API=4001
-> ```
-
-### 🚀 Passo 5: Subir a aplicação!
+### 🚀 Passo 4: Subir a aplicação!
 
 ```bash
 # Construir imagens e subir todos os containers em segundo plano
 docker compose up -d --build
 
-# Verificar se tudo está rodando e quais portas estão expostas
+# Verificar se tudo está rodando
 docker compose ps
 
 # Ver logs em tempo real (Ctrl+C para sair)
@@ -319,11 +340,21 @@ docker compose logs -f api
 **Resultado esperado de `docker compose ps`:**
 
 ```
-NAME          SERVICE     STATUS    PORTS
-grupo-db-1    db          running   5432/tcp
-grupo-api-1   api         running   0.0.0.0:4001->4000/tcp
-grupo-fe-1    frontend    running   0.0.0.0:3001->3000/tcp
+NAME              SERVICE     STATUS    PORTS
+meu-projeto-db-1       db          running   5432/tcp
+meu-projeto-api-1      api         running   0.0.0.0:4000->4000/tcp
+meu-projeto-frontend-1 frontend    running   0.0.0.0:80->3000/tcp
 ```
+
+### 🌐 Passo 5: Testar o acesso via IP
+
+Abra o navegador **no seu PC** e acesse:
+
+```
+http://SEU_IP_PUBLICO
+```
+
+Se a tela do seu frontend apareceu — **sua aplicação está online!** 🎉
 
 > [!NOTE] 💼 Pergunta de Entrevista
 > **"Explique a diferença entre `docker compose up` e `docker compose up -d`."**
@@ -332,19 +363,9 @@ grupo-fe-1    frontend    running   0.0.0.0:3001->3000/tcp
 
 ---
 
-## 📌 3. IP Público + DNS Gratuito + HTTPS [Hands-On ⏳ 25 min]
+## 📌 3. DNS Gratuito + HTTPS Automático [Hands-On ⏳ 25 min]
 
-### 🌐 Testando o acesso via IP
- 
-Agora que os containers estão rodando, abra o navegador no seu PC e acesse:
- 
-```
-http://54.207.120.35:3001
-```
-
-Se a tela do seu frontend apareceu — **sua aplicação está online!** 🎉
-
-Mas... acessar por IP e porta não é profissional. Vamos resolver isso.
+Acessar por IP não é profissional. Vamos resolver isso com um domínio gratuito e HTTPS.
 
 ### 🦆 Passo 1: Registrar um subdomínio gratuito no DuckDNS
 
@@ -352,50 +373,27 @@ O [[DuckDNS]] é um serviço gratuito de DNS dinâmico que dá subdomínios `.du
 
 1. Acesse **[duckdns.org](https://www.duckdns.org)**
 2. Faça login com sua conta **GitHub**
-3. No campo "sub domain", digite o nome desejado (ex: `grupo-alpha`)
+3. No campo "sub domain", digite o nome do seu grupo (ex: `pi2-alpha`)
 4. Clique em **"add domain"**
-5. No campo "current ip", coloque o **IP Público da VM** (ex: `54.207.120.35`)
+5. No campo "current ip", coloque o **IP Público da sua EC2** (ex: `54.89.123.45`)
 6. Clique em **"update ip"**
 
-**Pronto!** Agora `grupo-alpha.duckdns.org` aponta para sua VM.
+**Pronto!** Agora `pi2-alpha.duckdns.org` aponta para sua VM.
 
 Teste no navegador:
 ```
-http://grupo-alpha.duckdns.org:3001
+http://pi2-alpha.duckdns.org
 ```
 
 ### 🔒 Passo 2: Adicionar HTTPS com Caddy (SSL Automático)
 
 O [[Caddy]] é um servidor web moderno e leve, muito utilizado em práticas de [[SRE]], que obtém certificados SSL do [[Let's Encrypt]] **automaticamente**, sem nenhuma configuração manual.
 
-#### 🛠️ Abordagem A: Teste Sequencial (Caddy no Docker do Grupo)
-Para testar o Caddy diretamente no seu projeto, **adicione o serviço ao seu `docker-compose.yml`**:
-
-```yaml
-  caddy:
-    image: caddy:2-alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"  # HTTP/3
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - frontend
-    networks:
-      - interno
-```
-
-> ⚠️ **Atenção:** Como estamos compartilhando uma única VM, apenas **UM** grupo por vez pode rodar o Caddy escutando nas portas `80` e `443` do host. O professor organizará a execução sequencial na hora da aula para cada grupo ver seu SSL ativo.
-
-**Criar o arquivo `Caddyfile`** (na raiz do projeto):
+**Criar o arquivo `Caddyfile`** na raiz do projeto:
 
 ```caddy
-# Caddyfile unificado: resolve HTTPS e elimina CORS!
-grupo-alpha.duckdns.org {
+# Caddyfile — HTTPS automático + elimina CORS!
+pi2-alpha.duckdns.org {
     # 1. Roteia chamadas /api para a API interna na rede do Docker
     handle_path /api/* {
         reverse_proxy api:4000
@@ -410,53 +408,97 @@ grupo-alpha.duckdns.org {
 
 **Por que este Caddyfile de 9 linhas é genial?**
 - **SSL Automático:** O Caddy obtém o certificado TLS da Let's Encrypt para seu subdomínio sem você fazer nada.
-- **Adeus CORS:** Como tanto o frontend quanto a API são acessados sob o mesmo domínio (`grupo-alpha.duckdns.org`), o navegador não bloqueia as chamadas e o CORS deixa de ser um problema!
-- **Variáveis de Ambiente Limpas:** O seu frontend React pode usar caminhos relativos para a API: `REACT_APP_API_URL=/api`.
+- **Adeus CORS:** Como tanto o frontend quanto a API são acessados sob o mesmo domínio (`pi2-alpha.duckdns.org`), o navegador não bloqueia as chamadas e o CORS deixa de ser um problema!
+- **Variáveis de Ambiente Limpas:** O seu frontend pode usar caminhos relativos para a API: `REACT_APP_API_URL=/api`.
 
-**Subir a stack com o Caddy:**
+### 🐳 Passo 3: Atualizar o docker-compose.yml (Fase 2 — Produção)
+
+Agora adicionamos o Caddy e **fechamos as portas expostas** do frontend e da API:
+
+```yaml
+# docker-compose.yml — Fase 2 (Produção com HTTPS)
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - interno
+
+  api:
+    build: ./backend
+    restart: unless-stopped
+    # 🔒 SEM "ports:" — a API só é acessível via Caddy internamente
+    environment:
+      DATABASE_URL: postgres://${DB_USER}:${DB_PASS}@db:5432/${DB_NAME}
+      NODE_ENV: production
+    depends_on:
+      - db
+    networks:
+      - interno
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    # 🔒 SEM "ports:" — o frontend só é acessível via Caddy internamente
+    depends_on:
+      - api
+    networks:
+      - interno
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"       # HTTP (redireciona automaticamente para HTTPS)
+      - "443:443"     # HTTPS
+      - "443:443/udp" # HTTP/3
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+    networks:
+      - interno
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:
+
+networks:
+  interno:
+    driver: bridge
+```
+
+### 🔄 Passo 4: Atualizar o `.env` e resubir
 
 ```bash
-# Recriar os containers aplicando o Caddy
+# Editar o .env — mudar a URL da API para caminho relativo
+nano .env
+# Alterar: REACT_APP_API_URL=/api
+
+# Recriar os containers com Caddy
 docker compose up -d --build
 
 # Verificar os logs do Caddy (aqui você vê o Let's Encrypt emitindo o certificado!)
 docker compose logs -f caddy
 ```
 
----
+### 🎉 Resultado Final
 
-#### 🌐 Abordagem B: Multi-Tenant Simultâneo (Caddy Central do Professor)
-Para que **todos os grupos rodem simultaneamente com HTTPS** sem conflito de portas, o professor configurou um **Caddy Central** no host da VM. 
-Nesse modelo, os grupos **não rodam** o container Caddy. Eles apenas expõem suas portas (ex: frontend em `3001` e API em `4001`), e o Caddy do professor faz o roteamento inteligente:
-
-```mermaid
-flowchart TD
-    USER["👤 Navegador do Usuário"]
-    DNS["🦆 DuckDNS (*.duckdns.org)"]
-    
-    subgraph VM["🖥️ VM EC2 Compartilhada"]
-        CADDY["🔒 Caddy Central (Porta 443)<br>Gerencia SSLs automaticamente"]
-        
-        subgraph G_ALPHA["🔵 Grupo Alpha"]
-            FE_A["Frontend (Porta 3001)"]
-            API_A["API (Porta 4001)"]
-        end
-        
-        subgraph G_BETA["🟢 Grupo Beta"]
-            FE_B["Frontend (Porta 3002)"]
-            API_B["API (Porta 4002)"]
-        end
-    end
-
-    USER -->|"1. Acessa pi2-alpha.duckdns.org"| DNS
-    DNS -->|"2. Resolve IP"| CADDY
-    
-    CADDY -->|"pi2-alpha.duckdns.org"| FE_A
-    CADDY -->|"pi2-alpha.duckdns.org/api/*"| API_A
-    
-    CADDY -->|"pi2-beta.duckdns.org"| FE_B
-    CADDY -->|"pi2-beta.duckdns.org/api/*"| API_B
+Acesse no navegador:
 ```
+https://pi2-alpha.duckdns.org
+```
+
+🔒 **Cadeado verde!** Sua aplicação está rodando com HTTPS, domínio próprio, e sem erros de CORS.
 
 > [!TIP] 💡 Dica de Produção (Pro-Tip)
 > O **Caddy** substitui ferramentas legadas como o [[NGINX]] + Certbot em startups e MVPs devido à facilidade de configuração (SSL nativo, sem cron jobs de renovação). Em grandes infraestruturas com centenas de subdomínios, soluções como Caddy ou gateways do Kubernetes gerenciam milhares de certificados por segundo com absoluta estabilidade.
@@ -579,18 +621,19 @@ sudo dpkg-reconfigure -plow unattended-upgrades
 
 | **Conceito/Comando** | **Definição/Aplicação Prática** |
 | --- | --- |
-| EC2 (AWS) / Azure VM | Máquina virtual na nuvem — seu servidor de produção |
-| Security Group / NSG | Firewall de rede na nuvem — controla quais portas estão abertas |
-| Elastic IP / Public IP | IP público fixo associado à sua instância |
-| `ssh usuario@IP` | Conectar remotamente em um servidor via protocolo SSH |
-| `ssh-keygen -t ed25519` | Gerar par de chaves criptográficas para autenticação sem senha |
+| AWS Academy Learner Lab | Ambiente de laboratório AWS com créditos gratuitos para estudantes |
+| EC2 (Elastic Compute Cloud) | Máquina virtual na nuvem — seu servidor de produção |
+| Security Group | Firewall de rede na AWS — controla quais portas estão abertas |
+| `vockey` / `labsuser.pem` | Par de chaves SSH pré-configurado no Learner Lab |
+| `ssh -i chave.pem ubuntu@IP` | Conectar remotamente em um servidor via protocolo SSH |
+| `curl -fsSL https://get.docker.com \| sudo sh` | Instalar Docker via script oficial |
 | `docker compose up -d --build` | Construir imagens e subir todos os containers em segundo plano |
 | `docker compose ps` | Listar containers rodando e seus status |
 | `docker compose logs -f` | Acompanhar logs em tempo real (debug) |
 | `docker compose down` | Parar e remover todos os containers da stack |
 | DuckDNS | Serviço gratuito de DNS dinâmico — subdomínios `.duckdns.org` |
 | Caddy | Servidor web que obtém certificados SSL automaticamente |
-| `Caddyfile` | Arquivo de configuração do Caddy (3 linhas para HTTPS!) |
+| `Caddyfile` | Arquivo de configuração do Caddy (9 linhas para HTTPS + reverse proxy!) |
 | `reverse_proxy` | Redirecionar tráfego externo para um container interno |
 | UFW | Firewall simplificado do Ubuntu — controla portas abertas (dentro da VM) |
 | Fail2Ban | Proteção automática contra tentativas de brute-force SSH |
@@ -607,7 +650,7 @@ sudo dpkg-reconfigure -plow unattended-upgrades
 
 ### Questão 1: Prática (Múltipla Escolha — Nível: Intermediário)
 
-**Enunciado:** Um grupo de alunos subiu sua aplicação com Docker Compose em uma VM na nuvem. O `docker-compose.yml` contém três serviços: `db` (PostgreSQL), `api` (Node.js) e `frontend` (React). Ao acessar `http://IP:3001`, o frontend carrega mas não consegue se comunicar com a API. O aluno verifica que `docker compose ps` mostra todos os containers como "running". Qual é a causa mais provável do problema?
+**Enunciado:** Um grupo de alunos subiu sua aplicação com Docker Compose em uma VM na nuvem. O `docker-compose.yml` contém três serviços: `db` (PostgreSQL), `api` (Node.js) e `frontend` (React). Ao acessar `http://IP:80`, o frontend carrega mas não consegue se comunicar com a API. O aluno verifica que `docker compose ps` mostra todos os containers como "running". Qual é a causa mais provável do problema?
 
 - [ ] A) O PostgreSQL não está aceitando conexões externas
 - [ ] B) O container da API não está na mesma rede Docker que o frontend
@@ -642,7 +685,7 @@ Um reverse proxy é um servidor intermediário que recebe todas as requisições
 Os benefícios são:
 1. **SSL/TLS centralizado** — apenas o Caddy precisa do certificado, não cada serviço individualmente
 2. **Segurança** — os containers internos não são expostos diretamente à internet
-3. **Flexibilidade** — podemos rotear diferentes domínios para diferentes containers (ex: `api.grupo.duckdns.org` → API, `grupo.duckdns.org` → Frontend)
+3. **Flexibilidade** — podemos rotear diferentes caminhos para diferentes containers (ex: `/api/*` → API, `/` → Frontend)
 4. **HTTP/2 e HTTP/3** — o Caddy habilita protocolos modernos automaticamente
 
 Sem o reverse proxy, seria necessário configurar SSL em cada serviço separadamente e expor múltiplas portas, aumentando a superfície de ataque.
@@ -665,6 +708,7 @@ Sem o reverse proxy, seria necessário configurar SSL em cada serviço separadam
 - **DOCKER, Inc.**, *Docker Documentation — Compose in Production*. Docker, 2025. Disponível em: https://docs.docker.com/compose/how-tos/production/
 - **CADDY**, *Caddy Documentation — Getting Started*. Caddy, 2025. Disponível em: https://caddyserver.com/docs/getting-started
 - **DUCKDNS**, *DuckDNS — Free Dynamic DNS*. DuckDNS, 2025. Disponível em: https://www.duckdns.org/
+- **AWS**, *AWS Academy — Learner Lab*. Amazon Web Services, 2025. Disponível em: https://aws.amazon.com/training/awsacademy/
 - **TANENBAUM, Andrew S.; WETHERALL, David J.**, *Redes de Computadores*. 5ª ed. Pearson, 2011. **Capítulo 8: Segurança de Redes, pp. 513–590** — Fundamentos de criptografia, SSL/TLS e autenticação por chaves.
 - **STALLINGS, William**, *Criptografia e Segurança de Redes*. 6ª ed. Pearson, 2014. **Capítulo 17: Segurança em Nível de Transporte, pp. 497–522** — Protocolo TLS e certificados digitais.
 - **KANE, Sean P.; MATTHIAS, Karl**, *Docker: Up & Running*. 3rd ed. O'Reilly Media, 2023. **Capítulo 11: Production Containers, pp. 245–278** — Boas práticas de segurança e deploy Docker em produção.
