@@ -480,11 +480,15 @@ networks:
 ### 🔄 Passo 4: Atualizar o `.env` e resubir
 
 ```bash
+# ⚠️ IMPORTANTE: Parar os containers da Fase 1 ANTES de subir a Fase 2
+# (o Caddy precisa da porta 80 que o frontend estava usando)
+docker compose down
+
 # Editar o .env — mudar a URL da API para caminho relativo
 nano .env
 # Alterar: REACT_APP_API_URL=/api
 
-# Recriar os containers com Caddy
+# Recriar os containers com Caddy (agora com o novo compose)
 docker compose up -d --build
 
 # Verificar os logs do Caddy (aqui você vê o Let's Encrypt emitindo o certificado!)
