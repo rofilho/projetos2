@@ -359,7 +359,7 @@ Se a tela do seu frontend apareceu — **sua aplicação está online!** 🎉
 > [!NOTE] 💼 Pergunta de Entrevista
 > **"Explique a diferença entre `docker compose up` e `docker compose up -d`."**
 >
-> **Resposta ideal (nível Júnior+):** O flag `-d` significa *detached mode* — os containers rodam em segundo plano, liberando o terminal. Sem `-d`, os logs ficam presos no terminal e se você fechar a sessão [[SSH]], os containers morrem junto. Em produção, **sempre** usamos `-d`. Para ver os logs depois, usamos `docker compose logs -f`.
+> **Resposta ideal (nível Júnior+):** O flag `-d` significa *detached mode* — os containers rodam em segundo plano, liberando o terminal. Sem `-d`, os logs ficam presos no terminal e se você fechar a sessão SSH, os containers morrem junto. Em produção, **sempre** usamos `-d`. Para ver os logs depois, usamos `docker compose logs -f`.
 
 ---
 
@@ -369,7 +369,7 @@ Acessar por IP não é profissional. Vamos resolver isso com um domínio gratuit
 
 ### 🦆 Passo 1: Registrar um subdomínio gratuito no DuckDNS
 
-O [[DuckDNS]] é um serviço gratuito de DNS dinâmico que dá subdomínios `.duckdns.org` para qualquer pessoa:
+O DuckDNS é um serviço gratuito de DNS dinâmico que dá subdomínios `.duckdns.org` para qualquer pessoa:
 
 1. Acesse **[duckdns.org](https://www.duckdns.org)**
 2. Faça login com sua conta **GitHub**
@@ -387,7 +387,7 @@ http://pi2-alpha.duckdns.org
 
 ### 🔒 Passo 2: Adicionar HTTPS com Caddy (SSL Automático)
 
-O [[Caddy]] é um servidor web moderno e leve, muito utilizado em práticas de [[SRE]], que obtém certificados SSL do [[Let's Encrypt]] **automaticamente**, sem nenhuma configuração manual.
+O Caddy é um servidor web moderno e leve, muito utilizado em práticas de SRE, que obtém certificados SSL do Let's Encrypt **automaticamente**, sem nenhuma configuração manual.
 
 **Criar o arquivo `Caddyfile`** na raiz do projeto:
 
@@ -505,7 +505,7 @@ https://pi2-alpha.duckdns.org
 🔒 **Cadeado verde!** Sua aplicação está rodando com HTTPS, domínio próprio, e sem erros de CORS.
 
 > [!TIP] 💡 Dica de Produção (Pro-Tip)
-> O **Caddy** substitui ferramentas legadas como o [[NGINX]] + Certbot em startups e MVPs devido à facilidade de configuração (SSL nativo, sem cron jobs de renovação). Em grandes infraestruturas com centenas de subdomínios, soluções como Caddy ou gateways do Kubernetes gerenciam milhares de certificados por segundo com absoluta estabilidade.
+> O **Caddy** substitui ferramentas legadas como o NGINX + Certbot em startups e MVPs devido à facilidade de configuração (SSL nativo, sem cron jobs de renovação). Em grandes infraestruturas com centenas de subdomínios, soluções como Caddy ou gateways do Kubernetes gerenciam milhares de certificados por segundo com absoluta estabilidade.
 
 ---
 
@@ -567,7 +567,7 @@ sudo systemctl start fail2ban
 sudo fail2ban-client status sshd
 ```
 
-O [[Fail2Ban]] monitora os logs do SSH e **bloqueia automaticamente** qualquer IP que errar a senha mais de 5 vezes em 10 minutos.
+O Fail2Ban monitora os logs do SSH e **bloqueia automaticamente** qualquer IP que errar a senha mais de 5 vezes em 10 minutos.
 
 #### 4. Docker: Não rodar containers como root
 
