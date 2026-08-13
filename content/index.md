@@ -161,13 +161,20 @@ html, body, #quartz-root, #quartz-body, .page, .center, .center-content, article
     <span class="tag">▶ Continue Estudando</span>
     <h1>🚀 Projetos Integrados II</h1>
     <p>Gerenciamento de projetos, metodologias ágeis e documentação.</p>
-    <a href="./Aula-CP5---Deploy-na-Nuvem" class="btn" data-spa>Retomar: 🟢 Aula CP5: Deploy na Nuvem — Hospedagem, DNS e Segurança</a>
+    <a href="./Aula-S1---Abertura-do-Semestre-2026-2" class="btn" data-spa>Começar: 🟢 Aula S1: Abertura do Semestre 2026/2</a>
   </div>
 </div>
 
 <div class="row-wrapper">
   <div class="row-title">Conteúdo da Disciplina</div>
   <div class="row">
+    <a href="./Aula-S1---Abertura-do-Semestre-2026-2" class="card" data-spa>
+      <div class="card-thumb" style="background-image: url('assets/hero.png'); background-size: cover; background-position: center;"><div class="card-progress-bar"><div class="card-progress" style="width: 100%"></div></div></div>
+      <div class="card-content">
+        <div class="card-title">🟢 Aula S1: Abertura do Semestre 2026/2 — Regras, Avaliação e Grupos</div>
+        <div class="card-meta"><span>Acessar Aula</span><span>13/08</span></div>
+      </div>
+    </a>
     <a href="./01---Informacoes-da-Turma" class="card" data-spa>
       <div class="card-thumb" style="background-image: url('assets/capa_aula01.png'); background-size: cover; background-position: center;"><div class="card-progress-bar"><div class="card-progress" style="width: 70%"></div></div></div>
       <div class="card-content">

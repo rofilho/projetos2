@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr"><head><title>Aula CP5 - Deploy na Nuvem | Prof. Romualdo</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space Grotesk:wght@400;700&amp;family=Inter:ital,wght@0,400;0,600;1,400;1,600&amp;family=JetBrains Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="🚀 Projetos Integrados 2"/><meta property="og:title" content="Aula CP5 - Deploy na Nuvem | Prof. Romualdo"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Aula CP5 - Deploy na Nuvem | Prof. Romualdo"/><meta name="twitter:description" content="🟢 Aula CP5: Deploy na Nuvem — Hospedagem, DNS e Segurança Disciplina: Projetos Integrados 2 (VIA231) Curso: Inteligência Artificial e Ciência de Dados, Uniube Semana: 14 | Quarta-feira, 21/05/2026 Professor: Romualdo Mathias Filho Tipo: 🔬 100% Prática (Hands-On) Tópicos: AWS Academy Learner Lab, E..."/><meta property="og:description" content="🟢 Aula CP5: Deploy na Nuvem — Hospedagem, DNS e Segurança Disciplina: Projetos Integrados 2 (VIA231) Curso: Inteligência Artificial e Ciência de Dados, Uniube Semana: 14 | Quarta-feira, 21/05/2026 Professor: Romualdo Mathias Filho Tipo: 🔬 100% Prática (Hands-On) Tópicos: AWS Academy Learner Lab, E..."/><meta property="og:image:alt" content="🟢 Aula CP5: Deploy na Nuvem — Hospedagem, DNS e Segurança Disciplina: Projetos Integrados 2 (VIA231) Curso: Inteligência Artificial e Ciência de Dados, Uniube Semana: 14 | Quarta-feira, 21/05/2026 Professor: Romualdo Mathias Filho Tipo: 🔬 100% Prática (Hands-On) Tópicos: AWS Academy Learner Lab, E..."/><meta property="twitter:domain" content="rofilho.github.io/projetos2"/><meta property="og:url" content="https://rofilho.github.io/projetos2/Aula-CP5---Deploy-na-Nuvem"/><meta property="twitter:url" content="https://rofilho.github.io/projetos2/Aula-CP5---Deploy-na-Nuvem"/><link rel="icon" href="./static/icon.png"/><meta name="description" content="🟢 Aula CP5: Deploy na Nuvem — Hospedagem, DNS e Segurança Disciplina: Projetos Integrados 2 (VIA231) Curso: Inteligência Artificial e Ciência de Dados, Uniube Semana: 14 | Quarta-feira, 21/05/2026 Professor: Romualdo Mathias Filho Tipo: 🔬 100% Prática (Hands-On) Tópicos: AWS Academy Learner Lab, E..."/><meta name="generator" content="Quartz"/><link href="./index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiQzpcXFF1YXJ0el9Qb3J0YWlzXFxwcm9qZXRvczJcXHF1YXJ0elxcY29tcG9uZW50c1xcc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="./prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("./static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://rofilho.github.io/projetos2/index.xml"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://rofilho.github.io/projetos2/Aula-CP5---Deploy-na-Nuvem-og-image.webp"/><meta property="og:image:url" content="https://rofilho.github.io/projetos2/Aula-CP5---Deploy-na-Nuvem-og-image.webp"/><meta name="twitter:image" content="https://rofilho.github.io/projetos2/Aula-CP5---Deploy-na-Nuvem-og-image.webp"/><meta property="og:image:type" content="image/.webp"/></head><body data-slug="Aula-CP5---Deploy-na-Nuvem"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"></div><div class="center"><div class="page-header"><header><h2 class="page-title"><a href="." class="page-title__link"><img src="https://uniube.br/img/landing/logo_azul.svg" alt="Uniube" class="page-title__logo page-title__logo--light"/><img src="https://uniube.br/img/landing/logo_branca.svg" alt="Uniube" class="page-title__logo page-title__logo--dark"/><span class="page-title__text">🚀 Projetos Integrados 2</span></a></h2><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Pesquisar</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Pesquisar por algo" placeholder="Pesquisar por algo"/><div class="search-layout" data-preview="true"></div></div></div></div><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Tema escuro"><title>Tema escuro</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Tema claro"><title>Tema claro</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></header><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="./">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Aula CP5   Deploy na Nuvem</a></div></nav><nav class="lesson-nav" aria-label="Navegação entre aulas"><div class="lesson-nav__slot"><a href="./03---Tabela-Mestre-de-Avaliacao" class="nav-pill nav-pill--prev" data-spa="true"><div class="nav-pill__icon">📖</div><div class="nav-pill__body"><span class="nav-pill__label">← Anterior</span><span class="nav-pill__title">03 - Tabela Mestre de Avaliacao</span></div></a></div><div class="lesson-nav__slot lesson-nav__slot--right"></div></nav><h1 class="article-title">Aula CP5 - Deploy na Nuvem</h1><p show-comma="true" class="content-meta"><time datetime="2026-07-28T19:19:46.000Z">28 de jul. de 2026</time><span>Leitura de 15 min</span></p><ul class="tags"><li><a href="./tags/projetos-integrados" class="internal tag-link">projetos-integrados</a></li><li><a href="./tags/deploy" class="internal tag-link">deploy</a></li><li><a href="./tags/docker" class="internal tag-link">docker</a></li><li><a href="./tags/cloud" class="internal tag-link">cloud</a></li><li><a href="./tags/aws" class="internal tag-link">aws</a></li><li><a href="./tags/aws-academy" class="internal tag-link">aws-academy</a></li><li><a href="./tags/dns" class="internal tag-link">dns</a></li><li><a href="./tags/ssl" class="internal tag-link">ssl</a></li><li><a href="./tags/hardening" class="internal tag-link">hardening</a></li><li><a href="./tags/devops" class="internal tag-link">devops</a></li></ul></div></div><article class="popover-hint"><h1 id="-aula-cp5-deploy-na-nuvem--hospedagem-dns-e-segurança">🟢 Aula CP5: Deploy na Nuvem — Hospedagem, DNS e Segurança<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-aula-cp5-deploy-na-nuvem--hospedagem-dns-e-segurança" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><strong>Disciplina:</strong> Projetos Integrados 2 (VIA231)
+<strong>Curso:</strong> Inteligência Artificial e Ciência de Dados, Uniube
+<strong>Semana:</strong> 14 | Quarta-feira, 21/05/2026
+<strong>Professor:</strong> Romualdo Mathias Filho
+<strong>Tipo:</strong> 🔬 100% Prática (Hands-On)
+<strong>Tópicos:</strong> AWS Academy Learner Lab, EC2, Docker Compose em Produção, DNS Gratuito, SSL/HTTPS, Hardening</p>
+<hr/>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>🎯 Visão Geral da Aula &amp; Recursos </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>Hoje seu projeto sai do localhost e vai para o mundo.</strong> Cada grupo vai criar seu próprio servidor na AWS, colocar a aplicação online com domínio próprio e HTTPS — exatamente como um sistema real em produção.</p>
+<p><strong>O que você vai dominar:</strong></p>
+<ul>
+<li>🏗️ Criar uma instância EC2 na AWS e instalar Docker na nuvem</li>
+<li>🚀 Subir sua stack completa (DB + Backend + Frontend) com <code>docker compose</code></li>
+<li>🌐 Acessar sua aplicação por uma URL real (<code>meu-grupo.duckdns.org</code>) com HTTPS</li>
+<li>🛡️ Aplicar as primeiras camadas de segurança (firewall, SSH seguro, Fail2Ban)</li>
+</ul>
+<p><strong>📂 Recursos para Download:</strong></p>
+<ul>
+<li>📋 Cheatsheet de comandos → Seção “Resumo Estrutural” desta aula</li>
+<li>🐳 <code>docker-compose.yml</code> de referência → Módulo 2</li>
+<li>🔒 Script de Hardening → Módulo 4 (Material Assíncrono)</li>
+</ul>
+</div>
+</blockquote>
+<hr/>
+<h2 id="-objetivo-da-aula">🎯 Objetivo da Aula<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-objetivo-da-aula" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Ao final desta aula, os alunos serão capazes de:</p>
+<ul>
+<li>Criar e configurar uma instância EC2 na AWS usando o Learner Lab</li>
+<li>Realizar o deploy completo de uma aplicação containerizada (DB + Backend + Frontend) em produção</li>
+<li>Registrar um subdomínio DNS gratuito e configurar HTTPS automático com Caddy</li>
+<li>Aplicar práticas básicas de hardening em um servidor de produção</li>
+</ul>
+<hr/>
+<h2 id="-revisão-rápida-5-min">🔄 Revisão Rápida (5 min)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-revisão-rápida-5-min" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Conceito (CP-4 — MVP Completo)</strong></th><th><strong>Conexão com hoje</strong></th></tr></thead><tbody><tr><td>Docker Compose local</td><td>Hoje usamos o <strong>mesmo compose</strong> na nuvem — a portabilidade é o superpoder do Docker</td></tr><tr><td>Frontend + Backend + Banco integrados</td><td>A stack inteira sobe na VM com um único comando</td></tr><tr><td>README com instruções de execução</td><td>Agora o README ganha o link da <strong>URL pública</strong> do sistema hospedado</td></tr></tbody></table></div>
+<hr/>
+<h2 id="-1-criando-sua-vm-na-nuvem-aws-academy-hands-on--25-min">📌 1. Criando sua VM na Nuvem (AWS Academy) [Hands-On ⏳ 25 min]<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-1-criando-sua-vm-na-nuvem-aws-academy-hands-on--25-min" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="️-arquitetura--cada-grupo-com-sua-vm">🏗️ Arquitetura — Cada Grupo com sua VM<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-arquitetura--cada-grupo-com-sua-vm" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Diferente de um ambiente corporativo onde o DevOps prepara a infra, hoje <strong>vocês vão criar o servidor do zero</strong>. Cada grupo terá sua própria máquina virtual (EC2) na AWS:</p>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart TB\n    subgraph AWS[\&quot;☁️ AWS Academy — Learner Lab\&quot;]\n        direction TB\n        subgraph GA[\&quot;🔵 Grupo Alpha\&quot;]\n            EC2A[\&quot;🖥️ EC2 · Ubuntu 22.04&lt;br>t3.small · IP Público\&quot;]\n            DA[\&quot;🐳 Docker: DB + API + Frontend + Caddy\&quot;]\n            EC2A --> DA\n        end\n\n        subgraph GB[\&quot;🟢 Grupo Beta\&quot;]\n            EC2B[\&quot;🖥️ EC2 · Ubuntu 22.04&lt;br>t3.small · IP Público\&quot;]\n            DB[\&quot;🐳 Docker: DB + API + Frontend + Caddy\&quot;]\n            EC2B --> DB\n        end\n    end\n\n    DNSA[\&quot;🦆 alpha.duckdns.org\&quot;]\n    DNSB[\&quot;🦆 beta.duckdns.org\&quot;]\n    \n    DNSA --> EC2A\n    DNSB --> EC2B\n    \n    INTERNET[\&quot;🌐 Internet (HTTPS)\&quot;] --> DNSA\n    INTERNET --> DNSB&quot;">flowchart TB
+    subgraph AWS[&quot;☁️ AWS Academy — Learner Lab&quot;]
+        direction TB
+        subgraph GA[&quot;🔵 Grupo Alpha&quot;]
+            EC2A[&quot;🖥️ EC2 · Ubuntu 22.04&lt;br>t3.small · IP Público&quot;]
+            DA[&quot;🐳 Docker: DB + API + Frontend + Caddy&quot;]
+            EC2A --> DA
+        end
+
+        subgraph GB[&quot;🟢 Grupo Beta&quot;]
+            EC2B[&quot;🖥️ EC2 · Ubuntu 22.04&lt;br>t3.small · IP Público&quot;]
+            DB[&quot;🐳 Docker: DB + API + Frontend + Caddy&quot;]
+            EC2B --> DB
+        end
+    end
+
+    DNSA[&quot;🦆 alpha.duckdns.org&quot;]
+    DNSB[&quot;🦆 beta.duckdns.org&quot;]
+    
+    DNSA --> EC2A
+    DNSB --> EC2B
+    
+    INTERNET[&quot;🌐 Internet (HTTPS)&quot;] --> DNSA
+    INTERNET --> DNSB
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>💡 Dica de Produção (Pro-Tip) </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Em empresas como Nubank e iFood, cada aplicação roda em sua <strong>própria instância EC2 ou cluster ECS/EKS</strong> — exatamente como vocês estão fazendo agora! O fluxo de deploy (criar VM → instalar Docker → clone → compose up) é <strong>idêntico</strong> ao do mundo real.</p>
+</div>
+</blockquote>
+<h3 id="️-passo-1-acessar-o-aws-academy-learner-lab">🖥️ Passo 1: Acessar o AWS Academy Learner Lab<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-passo-1-acessar-o-aws-academy-learner-lab" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>Acesse o <strong>Canvas</strong> da disciplina</li>
+<li>Clique em <strong>“AWS Academy Learner Lab”</strong></li>
+<li>Clique em <strong>“Start Lab”</strong> (o indicador fica 🟢 verde quando pronto — aguarde ~2 min)</li>
+<li>Clique em <strong>“AWS”</strong> (abre o Console AWS em uma nova aba)</li>
+</ol>
+<h3 id="-passo-2-baixar-a-chave-ssh-do-laboratório">🔑 Passo 2: Baixar a chave SSH do laboratório<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-2-baixar-a-chave-ssh-do-laboratório" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Antes de criar a VM, baixe a chave de acesso:</p>
+<ol>
+<li>Na página do Learner Lab, clique em <strong>“AWS Details”</strong></li>
+<li>Clique em <strong>“Download PEM”</strong> (ou <strong>Download PPK</strong> se usar PuTTY no Windows)</li>
+<li>Salve o arquivo <code>labsuser.pem</code> em uma pasta conhecida (ex: <code>~/Downloads/</code>)</li>
+</ol>
+<p><strong>No Linux/Mac</strong>, defina as permissões corretas:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">chmod</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 400</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ~/Downloads/labsuser.pem</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>⚠️ Gotcha de Infraestrutura </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>Nunca compartilhe o arquivo <code>labsuser.pem</code>!</strong> Ele é sua chave privada — qualquer pessoa com este arquivo pode acessar seus servidores. Se vazou, encerre o lab e inicie um novo.</p>
+</div>
+</blockquote>
+<h3 id="️-passo-3-criar-a-instância-ec2">🏗️ Passo 3: Criar a instância EC2<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-passo-3-criar-a-instância-ec2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>No Console AWS (a aba que abriu no passo 1):</p>
+<ol>
+<li>Pesquise <strong>“EC2”</strong> na barra de busca → clique em <strong>EC2</strong></li>
+<li>Clique em <strong>“Launch instance”</strong> (botão laranja)</li>
+<li>Configure:</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Campo</th><th>Valor</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><code>deploy-NOME-DO-GRUPO</code> (ex: <code>deploy-alpha</code>)</td></tr><tr><td><strong>AMI</strong></td><td>Ubuntu Server 22.04 LTS (Free tier eligible)</td></tr><tr><td><strong>Instance type</strong></td><td><code>t3.small</code> (2 vCPU, 2 GB RAM)</td></tr><tr><td><strong>Key pair</strong></td><td>Selecione <strong><code>vockey</code></strong></td></tr><tr><td><strong>Security Group</strong></td><td>Clique em <strong>“Create security group”</strong> → marque ✅ <strong>Allow SSH</strong>, ✅ <strong>Allow HTTPS</strong>, ✅ <strong>Allow HTTP</strong></td></tr></tbody></table></div>
+<ol start="4">
+<li>Clique em <strong>“Launch instance”</strong> 🚀</li>
+</ol>
+<p><strong>Aguarde ~1 minuto</strong> e sua VM estará rodando!</p>
+<h3 id="-passo-4-descobrir-o-ip-público-da-vm">🌐 Passo 4: Descobrir o IP Público da VM<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-4-descobrir-o-ip-público-da-vm" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>No painel EC2, clique em <strong>“Instances”</strong></li>
+<li>Clique no nome da sua instância (<code>deploy-alpha</code>)</li>
+<li>Copie o <strong>“Public IPv4 address”</strong> (ex: <code>54.89.123.45</code>)</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>Atenção:</strong> Este IP é temporário — ele muda se você parar e reiniciar a instância. Para a aula de hoje, isso não é problema.</p>
+</blockquote>
+<h3 id="-passo-5-conectar-na-vm-via-ssh">🔌 Passo 5: Conectar na VM via SSH<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-5-conectar-na-vm-via-ssh" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Substituir pelo IP que você copiou no passo anterior</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">ssh</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -i</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ~/Downloads/labsuser.pem</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ubuntu@54.89.123.45</span></span></code></pre></figure>
+<p><strong>Primeira conexão?</strong> O terminal vai perguntar se confia no host — digite <code>yes</code>.</p>
+<p>Se conectou, parabéns! Você está dentro de um servidor na nuvem. 🎉</p>
+<h3 id="️-passo-6-instalar-docker-na-vm">⚙️ Passo 6: Instalar Docker na VM<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-passo-6-instalar-docker-na-vm" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>A VM vem “limpa” — precisamos instalar o Docker e o Git:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Atualizar o sistema</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> update</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> &amp;&amp; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> upgrade</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -y</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Instalar Docker (script oficial)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -fsSL</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> https://get.docker.com</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> sh</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Adicionar seu usuário ao grupo docker (evita precisar de sudo)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> usermod</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -aG</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ubuntu</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">newgrp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> docker</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Instalar Git</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -y</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> git</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Verificar se tudo está instalado</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --version</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> version</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">git</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --version</span></span></code></pre></figure>
+<p><strong>Resultado esperado:</strong></p>
+<pre><code>Docker version 27.x.x
+Docker Compose version v2.x.x
+git version 2.x.x
+</code></pre>
+<h3 id="-checkpoint-teste-seu-conhecimento">🧠 Checkpoint: Teste seu Conhecimento!<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-checkpoint-teste-seu-conhecimento" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<details>
+<summary><b>🔍 Exercício Rápido: Por que usamos chave SSH em vez de senha para acessar servidores?</b></summary>
+<blockquote>
+<p><strong>Resposta Correta:</strong> Chaves SSH são exponencialmente mais seguras que senhas porque:</p>
+<ol>
+<li><strong>Impossível de adivinhar</strong> — uma chave Ed25519 tem 256 bits de entropia (vs. ~40 bits de uma senha forte)</li>
+<li><strong>Imune a brute-force</strong> — não existe “tentar todas as combinações” viável</li>
+<li><strong>Sem transmissão de segredo</strong> — a chave privada nunca sai do seu PC; o servidor só vê a pública</li>
+</ol>
+<p>É por isso que empresas desativam login por senha em servidores de produção (veremos isso no Hardening).</p>
+</blockquote>
+</details>
+<hr/>
+<h2 id="-2-subindo-a-aplicação-com-docker-compose-hands-on--25-min">📌 2. Subindo a Aplicação com Docker Compose [Hands-On ⏳ 25 min]<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-2-subindo-a-aplicação-com-docker-compose-hands-on--25-min" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-passo-1-clonar-o-repositório-do-grupo">📥 Passo 1: Clonar o repositório do grupo<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-1-clonar-o-repositório-do-grupo" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Criar pasta e clonar o projeto</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkdir</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ~/meu-projeto</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ~/meu-projeto</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Clonar o repositório do grupo (exemplo)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> clone</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> https://github.com/grupo-alpha/projeto-ia.git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> .</span></span></code></pre></figure>
+<blockquote>
+<p>Se o repositório for <strong>privado</strong>, use um Personal Access Token (Token de Acesso Pessoal):</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> clone</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> https://oauth2:ghp_Y1a2b3c4d5e6f7g8h9i0jK@github.com/grupo-alpha/projeto-ia.git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> .</span></span></code></pre></figure>
+</blockquote>
+<h3 id="️-passo-2-configurar-variáveis-de-ambiente">⚙️ Passo 2: Configurar variáveis de ambiente<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-passo-2-configurar-variáveis-de-ambiente" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Copiar o arquivo de exemplo e editar</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">cp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> .env.example</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> .env</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">nano</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> .env</span></span></code></pre></figure>
+<p><strong>Exemplo de <code>.env</code> para produção:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="env" data-theme="github-light github-dark"><code data-language="env" data-theme="github-light github-dark" style="display:grid;"><span data-line><span># Banco de Dados</span></span>
+<span data-line><span>DB_NAME=meuprojeto_prod</span></span>
+<span data-line><span>DB_USER=app_user</span></span>
+<span data-line><span>DB_PASS=SenhaForte123!@#</span></span>
+<span data-line> </span>
+<span data-line><span># Backend</span></span>
+<span data-line><span>NODE_ENV=production</span></span>
+<span data-line> </span>
+<span data-line><span># Frontend — Na Fase 1 (teste), aponte para o IP público:</span></span>
+<span data-line><span>REACT_APP_API_URL=http://SEU_IP_PUBLICO:4000</span></span>
+<span data-line><span># Na Fase 2 (com Caddy/HTTPS), mude para caminho relativo:</span></span>
+<span data-line><span># REACT_APP_API_URL=/api</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>⚠️ Gotcha de Infraestrutura </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>O <code>.env</code> NUNCA vai para o Git!</strong> Verifiquem agora se o <code>.gitignore</code> do projeto contém a linha <code>.env</code>. Se não contém, adicionem imediatamente:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;.env&quot;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> >></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> .gitignore</span></span></code></pre></figure>
+<p>Credenciais vazadas no GitHub são o erro #1 de segurança de projetos universitários.</p>
+</div>
+</blockquote>
+<h3 id="-passo-3-preparar-o-docker-composeyml-para-produção">🐳 Passo 3: Preparar o docker-compose.yml para produção<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-3-preparar-o-docker-composeyml-para-produção" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Como cada grupo tem sua <strong>própria VM</strong>, não precisamos mapear portas por grupo. Começamos com acesso direto para testar:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># docker-compose.yml — Fase 1 (Teste via IP Público)</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">services</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  db</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    image</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">postgres:16-alpine</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    restart</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">unless-stopped</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    environment</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      POSTGRES_DB</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">${DB_NAME}</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      POSTGRES_USER</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">${DB_USER}</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      POSTGRES_PASSWORD</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">${DB_PASS}</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    volumes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">pgdata:/var/lib/postgresql/data</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">interno</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # ⚠️ SEM &quot;ports:&quot; — o banco NUNCA é exposto na internet!</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  api</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    build</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">./backend</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    restart</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">unless-stopped</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    ports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;4000:4000&quot;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # 🟡 Exposta temporariamente para testes (remover na Fase 2)</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    environment</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      DATABASE_URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">postgres://${DB_USER}:${DB_PASS}@db:5432/${DB_NAME}</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      NODE_ENV</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">production</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    depends_on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">db</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">interno</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  frontend</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    build</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">./frontend</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    restart</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">unless-stopped</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    ports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;80:3000&quot;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # 🟢 Acesso direto via IP na porta 80</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    depends_on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">api</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">interno</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">volumes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  pgdata</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  interno</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    driver</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">bridge</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>⚠️ Gotcha Crítico de Rede (CORS e Localhost) </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>O maior erro de iniciantes:</strong> Configurar a variável <code>REACT_APP_API_URL</code> como <code>http://api:4000</code> ou <code>http://localhost:4000</code>.</p>
+<ul>
+<li><strong>Por que falha?</strong> O React roda no <strong>navegador do usuário</strong> (client-side), e não dentro do servidor Docker. O navegador do usuário não sabe o que é <code>api</code> (DNS do Docker) e, se tentar acessar <code>localhost</code>, buscará a API no próprio computador do aluno!</li>
+<li><strong>Solução na Fase 1:</strong> A variável deve apontar para o IP público: <code>REACT_APP_API_URL=http://54.89.123.45:4000</code>.</li>
+<li><strong>Solução na Fase 2:</strong> Usar caminho relativo: <code>REACT_APP_API_URL=/api</code> (o Caddy roteia automaticamente).</li>
+</ul>
+</div>
+</blockquote>
+<h3 id="-passo-4-subir-a-aplicação">🚀 Passo 4: Subir a aplicação!<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-4-subir-a-aplicação" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Construir imagens e subir todos os containers em segundo plano</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> up</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -d</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --build</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Verificar se tudo está rodando</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ps</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Ver logs em tempo real (Ctrl+C para sair)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> logs</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -f</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Ver logs só do backend (útil para debugar erros de conexão)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> logs</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -f</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> api</span></span></code></pre></figure>
+<p><strong>Resultado esperado de <code>docker compose ps</code>:</strong></p>
+<pre><code>NAME              SERVICE     STATUS    PORTS
+meu-projeto-db-1       db          running   5432/tcp
+meu-projeto-api-1      api         running   0.0.0.0:4000->4000/tcp
+meu-projeto-frontend-1 frontend    running   0.0.0.0:80->3000/tcp
+</code></pre>
+<h3 id="-passo-5-testar-o-acesso-via-ip">🌐 Passo 5: Testar o acesso via IP<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-5-testar-o-acesso-via-ip" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Abra o navegador <strong>no seu PC</strong> e acesse:</p>
+<pre><code>http://SEU_IP_PUBLICO
+</code></pre>
+<p>Se a tela do seu frontend apareceu — <strong>sua aplicação está online!</strong> 🎉</p>
+<blockquote class="callout note" data-callout="note">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>💼 Pergunta de Entrevista </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>“Explique a diferença entre <code>docker compose up</code> e <code>docker compose up -d</code>.”</strong></p>
+<p><strong>Resposta ideal (nível Júnior+):</strong> O flag <code>-d</code> significa <em>detached mode</em> — os containers rodam em segundo plano, liberando o terminal. Sem <code>-d</code>, os logs ficam presos no terminal e se você fechar a sessão SSH, os containers morrem junto. Em produção, <strong>sempre</strong> usamos <code>-d</code>. Para ver os logs depois, usamos <code>docker compose logs -f</code>.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="-3-dns-gratuito--https-automático-hands-on--25-min">📌 3. DNS Gratuito + HTTPS Automático [Hands-On ⏳ 25 min]<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-3-dns-gratuito--https-automático-hands-on--25-min" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Acessar por IP não é profissional. Vamos resolver isso com um domínio gratuito e HTTPS.</p>
+<h3 id="-passo-1-registrar-um-subdomínio-gratuito-no-duckdns">🦆 Passo 1: Registrar um subdomínio gratuito no DuckDNS<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-1-registrar-um-subdomínio-gratuito-no-duckdns" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>O DuckDNS é um serviço gratuito de DNS dinâmico que dá subdomínios <code>.duckdns.org</code> para qualquer pessoa:</p>
+<ol>
+<li>Acesse <strong><a href="https://www.duckdns.org" class="external">duckdns.org<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></strong></li>
+<li>Faça login com sua conta <strong>GitHub</strong></li>
+<li>No campo “sub domain”, digite o nome do seu grupo (ex: <code>pi2-alpha</code>)</li>
+<li>Clique em <strong>“add domain”</strong></li>
+<li>No campo “current ip”, coloque o <strong>IP Público da sua EC2</strong> (ex: <code>54.89.123.45</code>)</li>
+<li>Clique em <strong>“update ip”</strong></li>
+</ol>
+<p><strong>Pronto!</strong> Agora <code>pi2-alpha.duckdns.org</code> aponta para sua VM.</p>
+<p>Teste no navegador:</p>
+<pre><code>http://pi2-alpha.duckdns.org
+</code></pre>
+<h3 id="-passo-2-adicionar-https-com-caddy-ssl-automático">🔒 Passo 2: Adicionar HTTPS com Caddy (SSL Automático)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-2-adicionar-https-com-caddy-ssl-automático" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>O Caddy é um servidor web moderno e leve, muito utilizado em práticas de SRE, que obtém certificados SSL do Let’s Encrypt <strong>automaticamente</strong>, sem nenhuma configuração manual.</p>
+<p><strong>Criar o arquivo <code>Caddyfile</code></strong> na raiz do projeto:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="caddy" data-theme="github-light github-dark"><code data-language="caddy" data-theme="github-light github-dark" style="display:grid;"><span data-line><span># Caddyfile — HTTPS automático + elimina CORS!</span></span>
+<span data-line><span>pi2-alpha.duckdns.org {</span></span>
+<span data-line><span>    # 1. Roteia chamadas /api para a API interna na rede do Docker</span></span>
+<span data-line><span>    handle_path /api/* {</span></span>
+<span data-line><span>        reverse_proxy api:4000</span></span>
+<span data-line><span>    }</span></span>
+<span data-line> </span>
+<span data-line><span>    # 2. Roteia todo o restante para o frontend</span></span>
+<span data-line><span>    handle {</span></span>
+<span data-line><span>        reverse_proxy frontend:3000</span></span>
+<span data-line><span>    }</span></span>
+<span data-line><span>}</span></span></code></pre></figure>
+<p><strong>Por que este Caddyfile de 9 linhas é genial?</strong></p>
+<ul>
+<li><strong>SSL Automático:</strong> O Caddy obtém o certificado TLS da Let’s Encrypt para seu subdomínio sem você fazer nada.</li>
+<li><strong>Adeus CORS:</strong> Como tanto o frontend quanto a API são acessados sob o mesmo domínio (<code>pi2-alpha.duckdns.org</code>), o navegador não bloqueia as chamadas e o CORS deixa de ser um problema!</li>
+<li><strong>Variáveis de Ambiente Limpas:</strong> O seu frontend pode usar caminhos relativos para a API: <code>REACT_APP_API_URL=/api</code>.</li>
+</ul>
+<h3 id="-passo-3-atualizar-o-docker-composeyml-fase-2--produção">🐳 Passo 3: Atualizar o docker-compose.yml (Fase 2 — Produção)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-3-atualizar-o-docker-composeyml-fase-2--produção" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Agora adicionamos o Caddy e <strong>fechamos as portas expostas</strong> do frontend e da API:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># docker-compose.yml — Fase 2 (Produção com HTTPS)</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">services</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  db</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    image</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">postgres:16-alpine</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    restart</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">unless-stopped</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    environment</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      POSTGRES_DB</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">${DB_NAME}</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      POSTGRES_USER</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">${DB_USER}</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      POSTGRES_PASSWORD</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">${DB_PASS}</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    volumes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">pgdata:/var/lib/postgresql/data</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">interno</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  api</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    build</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">./backend</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    restart</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">unless-stopped</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # 🔒 SEM &quot;ports:&quot; — a API só é acessível via Caddy internamente</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    environment</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      DATABASE_URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">postgres://${DB_USER}:${DB_PASS}@db:5432/${DB_NAME}</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">      NODE_ENV</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">production</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    depends_on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">db</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">interno</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  frontend</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    build</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">./frontend</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    restart</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">unless-stopped</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # 🔒 SEM &quot;ports:&quot; — o frontend só é acessível via Caddy internamente</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    depends_on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">api</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">interno</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  caddy</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    image</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">caddy:2-alpine</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    restart</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">unless-stopped</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    ports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;80:80&quot;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">       # HTTP (redireciona automaticamente para HTTPS)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;443:443&quot;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">     # HTTPS</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;443:443/udp&quot;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # HTTP/3</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    volumes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">./Caddyfile:/etc/caddy/Caddyfile:ro</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">caddy_data:/data</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">caddy_config:/config</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    depends_on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">frontend</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">interno</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">volumes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  pgdata</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  caddy_data</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  caddy_config</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">networks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">  interno</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">    driver</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">bridge</span></span></code></pre></figure>
+<h3 id="-passo-4-atualizar-o-env-e-resubir">🔄 Passo 4: Atualizar o <code>.env</code> e resubir<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-passo-4-atualizar-o-env-e-resubir" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># ⚠️ IMPORTANTE: Parar os containers da Fase 1 ANTES de subir a Fase 2</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># (o Caddy precisa da porta 80 que o frontend estava usando)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> down</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Editar o .env — mudar a URL da API para caminho relativo</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">nano</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> .env</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Alterar: REACT_APP_API_URL=/api</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Recriar os containers com Caddy (agora com o novo compose)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> up</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -d</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --build</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Verificar os logs do Caddy (aqui você vê o Let's Encrypt emitindo o certificado!)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">docker</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> compose</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> logs</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -f</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> caddy</span></span></code></pre></figure>
+<h3 id="-resultado-final">🎉 Resultado Final<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-resultado-final" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Acesse no navegador:</p>
+<pre><code>https://pi2-alpha.duckdns.org
+</code></pre>
+<p>🔒 <strong>Cadeado verde!</strong> Sua aplicação está rodando com HTTPS, domínio próprio, e sem erros de CORS.</p>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>💡 Dica de Produção (Pro-Tip) </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>O <strong>Caddy</strong> substitui ferramentas legadas como o NGINX + Certbot em startups e MVPs devido à facilidade de configuração (SSL nativo, sem cron jobs de renovação). Em grandes infraestruturas com centenas de subdomínios, soluções como Caddy ou gateways do Kubernetes gerenciam milhares de certificados por segundo com absoluta estabilidade.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="-4-hardening--segurança-do-servidor-material-assíncrono--20-min">📌 4. Hardening — Segurança do Servidor [Material Assíncrono ⏳ 20 min]<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-4-hardening--segurança-do-servidor-material-assíncrono--20-min" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p>⚠️ <strong>Este módulo é para vocês aplicarem DEPOIS da aula.</strong> O conteúdo será cobrado na AMOSTRATEC. Leiam, apliquem na VM, e tragam dúvidas na próxima aula.</p>
+</blockquote>
+<h3 id="️-checklist-de-segurança-aplicar-na-ordem">🛡️ Checklist de Segurança (aplicar na ordem)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-checklist-de-segurança-aplicar-na-ordem" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="1-ssh-desabilitar-login-por-senha">1. SSH: Desabilitar login por senha<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-ssh-desabilitar-login-por-senha" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Editar configuração do SSH</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> nano</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /etc/ssh/sshd_config</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Encontrar e alterar estas linhas:</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">PasswordAuthentication</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> no</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">PubkeyAuthentication</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> yes</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Reiniciar o serviço SSH</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> restart</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> sshd</span></span></code></pre></figure>
+<blockquote>
+<p>⚠️ <strong>CUIDADO:</strong> Antes de desabilitar senha, <strong>confirme que sua chave SSH funciona!</strong> Se desabilitar senha sem chave configurada, você perde acesso ao servidor permanentemente.</p>
+</blockquote>
+<h4 id="2-firewall-bloquear-portas-desnecessárias">2. Firewall: Bloquear portas desnecessárias<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-firewall-bloquear-portas-desnecessárias" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Instalar e configurar UFW (Uncomplicated Firewall)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ufw</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -y</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Política padrão: bloquear TUDO que entra, liberar TUDO que sai</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> default</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> deny</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> incoming</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> default</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> allow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> outgoing</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Liberar apenas o necessário</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> allow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 22/tcp</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">     # SSH</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> allow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 80/tcp</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">     # HTTP (redireciona para HTTPS)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> allow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 443/tcp</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # HTTPS</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Ativar o firewall</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> enable</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Verificar regras</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> status</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> verbose</span></span></code></pre></figure>
+<h4 id="3-fail2ban-proteção-contra-brute-force">3. Fail2Ban: Proteção contra brute-force<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-fail2ban-proteção-contra-brute-force" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Instalar</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> fail2ban</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -y</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Ativar e iniciar</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> enable</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> fail2ban</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> systemctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> start</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> fail2ban</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Ver status (IPs bloqueados)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> fail2ban-client</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> status</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> sshd</span></span></code></pre></figure>
+<p>O Fail2Ban monitora os logs do SSH e <strong>bloqueia automaticamente</strong> qualquer IP que errar a senha mais de 5 vezes em 10 minutos.</p>
+<h4 id="4-docker-não-rodar-containers-como-root">4. Docker: Não rodar containers como root<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-docker-não-rodar-containers-como-root" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>No <code>Dockerfile</code> do seu backend (exemplo para Node.js):</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="dockerfile" data-theme="github-light github-dark"><code data-language="dockerfile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">FROM</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> node:20-alpine</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Criar usuário não-root</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">RUN</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> addgroup -S appgroup &amp;&amp; adduser -S appuser -G appgroup</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">WORKDIR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> /app</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">COPY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> package*.json ./</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">RUN</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> npm ci --omit=dev</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">COPY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> . .</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Trocar para o usuário não-root ANTES de executar</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">USER</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> appuser</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">EXPOSE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> 4000</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">CMD</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;node&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;server.js&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span></code></pre></figure>
+<h4 id="5-atualizações-automáticas-de-segurança">5. Atualizações automáticas de segurança<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-atualizações-automáticas-de-segurança" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> apt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> unattended-upgrades</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -y</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dpkg-reconfigure</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -plow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> unattended-upgrades</span></span></code></pre></figure>
+<h3 id="-tabela-cheatsheet-de-segurança">📊 Tabela-Cheatsheet de Segurança<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-tabela-cheatsheet-de-segurança" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>O Que Fazer</th><th>Como</th><th>Por Quê</th></tr></thead><tbody><tr><td>Desativar SSH por senha</td><td><code>PasswordAuthentication no</code></td><td>Elimina brute-force</td></tr><tr><td>Firewall restritivo</td><td>UFW: só 22, 80, 443</td><td>Menor superfície de ataque</td></tr><tr><td>Fail2Ban ativo</td><td><code>apt install fail2ban</code></td><td>Bloqueia bots automáticos</td></tr><tr><td><code>.env</code> no <code>.gitignore</code></td><td><code>echo .env >> .gitignore</code></td><td>Evita vazamento de credenciais</td></tr><tr><td>Container não-root</td><td><code>USER appuser</code> no Dockerfile</td><td>Previne escalação de privilégios</td></tr><tr><td>Updates automáticos</td><td><code>unattended-upgrades</code></td><td>Patches de segurança sem esquecer</td></tr><tr><td>Porta do banco fechada</td><td>Sem <code>ports:</code> no compose</td><td>DB inacessível pela internet</td></tr><tr><td>Imagens com tag fixa</td><td><code>postgres:16-alpine</code></td><td>Reprodutibilidade e segurança</td></tr></tbody></table></div>
+<blockquote class="callout note" data-callout="note">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>💼 Pergunta de Entrevista </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>“Cite 3 medidas de segurança que você aplicaria ao colocar uma aplicação Docker em produção.”</strong></p>
+<p><strong>Resposta ideal (nível Pleno):</strong></p>
+<ol>
+<li><strong>Rede interna Docker</strong> — banco e API sem portas expostas, acessíveis apenas pela rede bridge interna</li>
+<li><strong>SSH por chave + Fail2Ban</strong> — desabilitar login por senha e bloquear IPs com tentativas falhas</li>
+<li><strong>Containers como non-root</strong> — usar <code>USER</code> no Dockerfile para minimizar impacto de vulnerabilidades</li>
+</ol>
+</div>
+</blockquote>
+<hr/>
+<h2 id="-resumo-estrutural">📋 Resumo Estrutural<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-resumo-estrutural" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Conceito/Comando</strong></th><th><strong>Definição/Aplicação Prática</strong></th></tr></thead><tbody><tr><td>AWS Academy Learner Lab</td><td>Ambiente de laboratório AWS com créditos gratuitos para estudantes</td></tr><tr><td>EC2 (Elastic Compute Cloud)</td><td>Máquina virtual na nuvem — seu servidor de produção</td></tr><tr><td>Security Group</td><td>Firewall de rede na AWS — controla quais portas estão abertas</td></tr><tr><td><code>vockey</code> / <code>labsuser.pem</code></td><td>Par de chaves SSH pré-configurado no Learner Lab</td></tr><tr><td><code>ssh -i chave.pem ubuntu@IP</code></td><td>Conectar remotamente em um servidor via protocolo SSH</td></tr><tr><td><code>curl -fsSL https://get.docker.com | sudo sh</code></td><td>Instalar Docker via script oficial</td></tr><tr><td><code>docker compose up -d --build</code></td><td>Construir imagens e subir todos os containers em segundo plano</td></tr><tr><td><code>docker compose ps</code></td><td>Listar containers rodando e seus status</td></tr><tr><td><code>docker compose logs -f</code></td><td>Acompanhar logs em tempo real (debug)</td></tr><tr><td><code>docker compose down</code></td><td>Parar e remover todos os containers da stack</td></tr><tr><td>DuckDNS</td><td>Serviço gratuito de DNS dinâmico — subdomínios <code>.duckdns.org</code></td></tr><tr><td>Caddy</td><td>Servidor web que obtém certificados SSL automaticamente</td></tr><tr><td><code>Caddyfile</code></td><td>Arquivo de configuração do Caddy (9 linhas para HTTPS + reverse proxy!)</td></tr><tr><td><code>reverse_proxy</code></td><td>Redirecionar tráfego externo para um container interno</td></tr><tr><td>UFW</td><td>Firewall simplificado do Ubuntu — controla portas abertas (dentro da VM)</td></tr><tr><td>Fail2Ban</td><td>Proteção automática contra tentativas de brute-force SSH</td></tr><tr><td><code>.env</code> + <code>.gitignore</code></td><td>Variáveis sensíveis fora do código-fonte</td></tr><tr><td><code>USER appuser</code></td><td>Diretiva no Dockerfile para rodar como não-root</td></tr><tr><td>Rede Docker interna</td><td>Containers se comunicam sem expor portas para a internet</td></tr></tbody></table></div>
+<hr/>
+<h2 id="-artigo-de-aprofundamento">📄 Artigo de Aprofundamento<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-artigo-de-aprofundamento" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><a href="https://docs.docker.com/compose/how-tos/production/" class="external">Use Compose in Production — Docker Official Documentation<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+</ul>
+<blockquote>
+<p><em>Resumo prático: A documentação oficial do Docker detalha as diferenças cruciais entre um <code>docker-compose.yml</code> de desenvolvimento e um de produção: remover bind mounts, usar volumes nomeados, definir <code>restart: always</code>, não expor portas desnecessárias e separar configurações com múltiplos arquivos Compose. É leitura obrigatória para quem acabou de sair do <code>localhost</code>.</em></p>
+</blockquote>
+<ul>
+<li><a href="https://caddyserver.com/docs/getting-started" class="external">Getting Started — Caddy Documentation<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+</ul>
+<blockquote>
+<p><em>Resumo prático: O guia oficial do Caddy explica como o servidor obtém certificados HTTPS automaticamente via ACME/Let’s Encrypt e como configurar reverse proxy com apenas 3 linhas. Ideal para entender por que o Caddy simplifica drasticamente o deploy comparado ao NGINX + Certbot.</em></p>
+</blockquote>
+<hr/>
+<h2 id="-referências-bibliográficas-e-citações">📚 Referências Bibliográficas e Citações<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-referências-bibliográficas-e-citações" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>DOCKER, Inc.</strong>, <em>Docker Documentation — Compose in Production</em>. Docker, 2025. Disponível em: <a href="https://docs.docker.com/compose/how-tos/production/" class="external">https://docs.docker.com/compose/how-tos/production/<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><strong>CADDY</strong>, <em>Caddy Documentation — Getting Started</em>. Caddy, 2025. Disponível em: <a href="https://caddyserver.com/docs/getting-started" class="external">https://caddyserver.com/docs/getting-started<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><strong>DUCKDNS</strong>, <em>DuckDNS — Free Dynamic DNS</em>. DuckDNS, 2025. Disponível em: <a href="https://www.duckdns.org/" class="external">https://www.duckdns.org/<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><strong>AWS</strong>, <em>AWS Academy — Learner Lab</em>. Amazon Web Services, 2025. Disponível em: <a href="https://aws.amazon.com/training/awsacademy/" class="external">https://aws.amazon.com/training/awsacademy/<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><strong>TANENBAUM, Andrew S.; WETHERALL, David J.</strong>, <em>Redes de Computadores</em>. 5ª ed. Pearson, 2011. <strong>Capítulo 8: Segurança de Redes, pp. 513–590</strong> — Fundamentos de criptografia, SSL/TLS e autenticação por chaves.</li>
+<li><strong>STALLINGS, William</strong>, <em>Criptografia e Segurança de Redes</em>. 6ª ed. Pearson, 2014. <strong>Capítulo 17: Segurança em Nível de Transporte, pp. 497–522</strong> — Protocolo TLS e certificados digitais.</li>
+<li><strong>KANE, Sean P.; MATTHIAS, Karl</strong>, <em>Docker: Up &amp; Running</em>. 3rd ed. O’Reilly Media, 2023. <strong>Capítulo 11: Production Containers, pp. 245–278</strong> — Boas práticas de segurança e deploy Docker em produção.</li>
+</ul>
+<hr/>
+<p><em>Última atualização: 2026-05-21 | Status: publicado</em></p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"></div><footer class="footer "><div class="footer__brand"><img src="https://uniube.br/img/landing/logo_azul.svg" alt="Universidade de Uberaba" class="footer__logo footer__logo--light"/><img src="https://uniube.br/img/landing/logo_branca.svg" alt="Universidade de Uberaba" class="footer__logo footer__logo--dark"/><div class="footer__info"><span class="footer__name">Prof. Romualdo Filho</span><a class="footer__email" href="mailto:romualdo.filho@uniube.br">romualdo.filho@uniube.br</a></div></div><ul class="footer__links"><li><a href="https://uniube.br" target="_blank" rel="noopener noreferrer">Mural Uniube</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="./postscript.js" type="module" data-persist="true"></script></html>
