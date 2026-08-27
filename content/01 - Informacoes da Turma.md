@@ -1,3 +1,4 @@
+
 # 📋 Informações da Turma
 
 ![[assets/image.png]]
@@ -9,7 +10,6 @@
 | Disciplina | Projetos Integrados 2 (VIA231) |
 | Instituição | Uniube, Uberlândia |
 | Docente | Romualdo Mathias Filho |
-| Alunos | 14 alunos, divididos em 3 a 4 grupos |
 | Dia | Quintas-feiras |
 | Local | Laboratório de Informática, presencial |
 
@@ -47,19 +47,19 @@ Hospedagem pública acessível via URL válida, por exemplo:
 
 ---
 
-## 💻 2. Gestão Técnica: Ecossistema GitLab
+## 💻 2. Gestão Técnica: Ecossistema GitHub
 
-Todo o projeto deve ser rastreável por meio de repositório oficial.
+Todo o projeto deve ser rastreável por meio de repositório oficial. Cada grupo tem um repositório
+próprio dentro da organização da turma no GitHub.
 
-**Repositório base:**
-
-[https://gitlab.com/uniube-pi2-2026-1](https://gitlab.com/uniube-pi2-2026-1)
+**Organização da turma:** [https://github.com/uniube-pi2-2026-2](https://github.com/uniube-pi2-2026-2)
 
 ### Regras de Versionamento
 
 - Commits semanais obrigatórios
 - Mensagens descritivas e objetivas
 - Histórico deve comprovar evolução e autoria
+- Todo deploy é acompanhado de um comentário registrando o que foi para o ar
 
 ### Estrutura Obrigatória
 
@@ -98,21 +98,31 @@ Checkpoints quinzenais presenciais.
 
 | Critério | Pontos |
 | --- | --- |
-| Execução Técnica | 4 pts |
-| Documentação | 3 pts |
-| Live Coding | 3 pts |
+| 🎤 Apresentação | 2,5 pts |
+| 🐙 GitHub | 2,5 pts |
+| 📝 Atas de reunião | 1,5 pts |
+| 💻 Tecnologia | 1,5 pts |
+| 🔴 Live Code | 2,0 pts |
 
 ### Detalhamento:
 
-**→ Execução Técnica**
+**→ Apresentação**
 
 Demonstração funcional do marco da etapa.
 
-**→ Documentação**
+**→ GitHub**
 
-Diagramas atualizados e especificação de API em `/docs`.
+Histórico de commits comprovando evolução e autoria, com comentário obrigatório a cada deploy.
 
-**→ Live Coding**
+**→ Atas de reunião**
+
+Registro das reuniões do grupo, versionado em `/docs`.
+
+**→ Tecnologia**
+
+Adequação e domínio das escolhas técnicas.
+
+**→ Live Code**
 
 Defesa técnica com modificação ao vivo no código.
 
@@ -144,22 +154,29 @@ Objetivo: validar domínio real do código e compreensão arquitetural.
 
 ---
 
-## 📅 4. Cronograma Operativo 2026/1
+## 📅 4. Cronograma Operativo 2026/2
 
-Alinhado ao calendário acadêmico oficial da Uniube Uberlândia.
 
 | Fase | Semana | Data | Atividade |
 | --- | --- | --- | --- |
-| Início | S1 | 19/02 | Formação de grupos e setup GitLab |
-| Setup | S2 | 26/02 | Termo de Abertura, README com escopo |
-| CP-1 | S4 | 12/03 | Banco de Dados, Script SQL + Modelo ER + Live Coding |
-| CP-2 | S6 | 26/03 | Backend, API CRUD funcional + Live Coding |
-| Recesso | S7 | 02/04 | Semana Santa, sem atividades presenciais |
-| CP-3 | S9 | 16/04 | Integração, Frontend consumindo API + Live Coding |
-| Mentoria | S10 | 23/04 | Ajustes pós feriado de 21/04 |
-| CP-4 | S12 | 07/05 | MVP com fluxo completo end-to-end + Live Coding |
-| CP-5 | S14 | 21/05 | Hospedagem ativa + README final |
-| N2 | S17 | 11/06 | AMOSTRATEC, apresentação final |
+| Início | S1 | 13/08 | Abertura, formação de grupos e setup GitHub |
+| — | S2 | 20/08 | Sem aula |
+| Escopo | S3 | 27/08 | Apresentação do Escopo |
+| CP-1 | S4 | 03/09 | Banco de Dados, Script SQL + Modelo ER + Termo de Abertura + Live Code |
+| Mentoria | S5 | 10/09 | Laboratório |
+| CP-2 | S6 | 17/09 | Backend, API CRUD funcional + Live Code |
+| Mentoria | S7 | 24/09 | Laboratório |
+| CP-3 | S8 | 01/10 | Integração, Frontend consumindo API + Live Code |
+| Mentoria | S9 | 08/10 | Laboratório |
+| CP-4 | S10 | 15/10 | MVP com fluxo completo end-to-end + Live Code |
+| Mentoria | S11 | 22/10 | Laboratório |
+| CP-5 | S12 | 29/10 | Hospedagem ativa + Deploy na Nuvem + Live Code |
+| Mentoria | S13 | 05/11 | Laboratório |
+| Mentoria | S14 | 12/11 | Laboratório |
+| Mentoria | S15 | 19/11 | Hardening, Troubleshooting e ensaio da defesa |
+| Mentoria | S16 | 26/11 | Laboratório |
+| Mentoria | S17 | 03/12 | Ajustes finais |
+| N2 | S18 | 10/12 | AMOSTRATEC, apresentação final |
 
 ---
 

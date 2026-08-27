@@ -1,23 +1,30 @@
+
 # ✅ Checklist de Entregas — Projetos Integrados 2
 
-> 📚 **Disciplina:** VIA231 — Projetos Integrados 2 👨‍🏫 **Professor:** Romualdo Mathias Filho 🏫 **Semestre:** 2026/1 — Uniube
+> 📚 **Disciplina:** VIA231 — Projetos Integrados 2 👨‍🏫 **Professor:** Romualdo Mathias Filho 🏫 **Semestre:** 2026/2 — Uniube
 > 
 
 ---
 
 # **📌 Como funciona a avaliação?**
 
-Cada Checkpoint (CP) vale **10 pontos**, distribuídos em 4 critérios:
+Cada Checkpoint (CP) vale **10 pontos**, distribuídos em 5 critérios:
 
 | **Critério** | **O que é avaliado** | **Peso** |
 | --- | --- | --- |
-| 🎤 Apresentação | Clareza, organização, participação de todos | 2,5 |
-| 🦊 GitLab | Commits frequentes, mensagens claras, branches, estrutura | 2,5 |
-| 💻 Tecnologia | Qualidade do código, arquitetura, funcionalidade | 2,5 |
-| 🔴 Live Code | Um aluno sorteado na hora modifica o código ao vivo | 2,5 |
+| 🎤 Apresentação | Demonstração funcional do marco, clareza, participação de todos | 2,5 |
+| 🐙 GitHub | Commits frequentes, mensagens claras, branches, estrutura, comentário a cada deploy | 2,5 |
+| 📝 Atas de reunião | Registro das reuniões versionado em `/docs` | 1,5 |
+| 💻 Tecnologia | Adequação e domínio das escolhas técnicas | 1,5 |
+| 🔴 Live Code | Um aluno sorteado na hora modifica o código ao vivo | 2,0 |
 
-> ⚠️ **ATENÇÃO:** Todo membro do grupo deve estar preparado para o Live Code! O aluno será sorteado aleatoriamente e deverá demonstrar domínio real do código. Não saber explicar ou modificar o código = nota baixa para o grupo inteiro.
+> ⚠️ **ATENÇÃO:** Todo membro do grupo deve estar preparado para o Live Code! O aluno será sorteado aleatoriamente e deverá demonstrar domínio real do código. Não saber explicar ou modificar o código = nota baixa para o grupo inteiro.
 > 
+
+## **🛑 Protocolo de Live Coding, Política Anti-IA**
+
+Proibido durante o Live Code: ChatGPT, Copilot ou qualquer IA generativa.
+Permitido: editor de texto, navegador e documentação oficial.
 
 ---
 
@@ -25,17 +32,22 @@ Cada Checkpoint (CP) vale **10 pontos**, distribuídos em 4 critérios:
 
 | **CP** | **Semana** | **Data** | **Marco** |
 | --- | --- | --- | --- |
-| CP-1 | S4 | 12/03 | 🗄️ Banco de Dados |
-| CP-2 | S6 | 26/03 | ⚙️ Backend — API CRUD |
-| CP-3 | S9 | 16/04 | 🔗 Integração Frontend + API |
-| CP-4 | S12 | 07/05 | 🚀 MVP Completo |
-| CP-5 | S14 | 21/05 | 🌐 Hospedagem + README Final |
+| CP-1 | S4 | 03/09 | 🗄️ Banco de Dados |
+| CP-2 | S6 | 17/09 | ⚙️ Backend — API CRUD |
+| CP-3 | S8 | 01/10 | 🔗 Integração Frontend + API |
+| CP-4 | S10 | 15/10 | 🚀 MVP Completo |
+| CP-5 | S12 | 29/10 | 🌐 Hospedagem + README Final |
+
+> Cronograma completo do semestre, com mentorias e AMOSTRATEC: [[01 - Informacoes da Turma]]
+> 
 
 ---
 
 # **📂 Documentação de Gestão Obrigatória**
 
-Além do código, cada grupo **deve manter documentação de gestão** no repositório GitLab, na pasta `/docs`.
+Além do código, cada grupo **deve manter documentação de gestão** no repositório GitHub, na pasta `/docs`.
+
+**Organização GitHub da turma:** https://github.com/uniube-pi2-2026-2
 
 ## **Estrutura esperada no repositório**
 
@@ -43,9 +55,9 @@ Além do código, cada grupo **deve manter documentação de gestão** no repo
 
 docs/
 ├── atas/
-│   ├── ata_S03_2026-03-05.md
-│   ├── ata_S04_2026-03-12.md
-│   ├── ata_S05_2026-03-19.md
+│   ├── ata_S03_2026-08-27.md
+│   ├── ata_S04_2026-09-03.md
+│   ├── ata_S05_2026-09-10.md
 │   └── ...
 ├── termo_abertura.md
 ├── cronograma.md
@@ -56,7 +68,7 @@ docs/
 
 Registro formal das decisões de cada reunião do grupo.
 
-**Mínimo de 12 atas ao longo do semestre** (≈ 1 por semana).
+**Mínimo de 12 atas ao longo do semestre** (≈ 1 por semana).
 
 ## **Template — Ata de Reunião**
 
@@ -103,18 +115,18 @@ Anotações relevantes.
 | --- | --- | --- |
 | 📄 Termo de Abertura | CP-1 | Nome, problema, objetivo, escopo, stack, membros |
 | 📅 Cronograma | CP-1 → atualizar a cada CP | Planejamento de entregas por semana |
-| 📊 Board/Kanban | CP-1 em diante | Issues no GitLab com labels e responsáveis |
+| 📊 Board/Kanban | CP-1 em diante | Issues no GitHub com labels e responsáveis |
 | 📝 Atas de Reunião | A cada reunião | Mínimo 12 no semestre |
 | 📑 Relatório Final | CP-5 | 1 página: planejado vs. entregue + lições |
 
-> 💡 **Dica:** Usem o Board de Issues do GitLab! Criem Issues para cada tarefa, atribuam responsáveis, usem labels (`feature`, `bug`, `docs`, `database`) e movam entre colunas (To Do → Doing → Done). Isso conta no critério GitLab!
+> 💡 **Dica:** Usem o GitHub Projects! Criem Issues para cada tarefa, atribuam responsáveis, usem labels (`feature`, `bug`, `docs`, `database`) e movam entre colunas (To Do → Doing → Done). Isso conta no critério GitHub!
 > 
 
 ---
 
 # **🗄️ CP-1 — Banco de Dados**
 
-> 📅 **Semana 4 · 12/03/2026** 🎯 **Objetivo:** Script SQL funcional + Modelo ER documentado
+> 📅 **Semana 4 · 03/09/2026** 🎯 **Objetivo:** Script SQL funcional + Modelo ER documentado
 > 
 
 ## **💻 Entregáveis técnicos**
@@ -127,16 +139,16 @@ Anotações relevantes.
 
 ## **📝 Documentos de gestão**
 
-- Termo de Abertura do Projeto na pasta `/docs`
+- Termo de Abertura do Projeto na pasta `/docs`
 - Cronograma do projeto (CP-1 a CP-5)
 - Mínimo 2 atas de reunião (semanas S3 e S4)
-- Board/Kanban configurado no GitLab (Issues + labels + responsáveis)
+- Board/Kanban configurado no GitHub (Issues + labels + responsáveis)
 
-## **🦊 GitLab**
+## **🐙 GitHub**
 
-- Repositório criado e organizado (pastas `/database`, `/docs`, etc.)
+- Repositório criado e organizado (pastas `/database`, `/docs`, etc.)
 - Commits descritivos — mínimo 1 por membro
-- Todos os membros como colaboradores no projeto
+- Todos os membros como colaboradores no repositório
 
 ## **🎤 Apresentação**
 
@@ -148,7 +160,7 @@ Anotações relevantes.
 
 # **⚙️ CP-2 — Backend / API CRUD**
 
-> 📅 **Semana 6 · 26/03/2026** 🎯 **Objetivo:** API CRUD funcional conectada ao banco do CP-1
+> 📅 **Semana 6 · 17/09/2026** 🎯 **Objetivo:** API CRUD funcional conectada ao banco do CP-1
 > 
 
 ## **💻 Entregáveis técnicos**
@@ -165,11 +177,11 @@ Anotações relevantes.
 - Board/Kanban atualizado — tarefas do CP-2 movidas para "Done"
 - Cronograma atualizado — marcar concluído, ajustar pendente
 
-## **🦊 GitLab**
+## **🐙 GitHub**
 
-- Código da API em pasta organizada (`/backend` ou `/api`)
+- Código da API em pasta organizada (`/backend` ou `/api`)
 - Commits semanais com mensagens descritivas
-- `.gitignore` configurado (não commitar `node_modules`, `.env`)
+- `.gitignore` configurado (não commitar `node_modules`, `.env`)
 - README atualizado com instruções de como rodar
 
 ## **🎤 Apresentação**
@@ -182,7 +194,7 @@ Anotações relevantes.
 
 # **🔗 CP-3 — Integração Frontend + API**
 
-> 📅 **Semana 9 · 16/04/2026** 🎯 **Objetivo:** Frontend consumindo a API com operações funcionais
+> 📅 **Semana 8 · 01/10/2026** 🎯 **Objetivo:** Frontend consumindo a API com operações funcionais
 > 
 
 ## **💻 Entregáveis técnicos**
@@ -195,16 +207,16 @@ Anotações relevantes.
 
 ## **📝 Documentos de gestão**
 
-- Mínimo 3 atas novas (semanas S7, S8 e S9)
+- Mínimo 2 atas novas (semanas S7 e S8)
 - Board/Kanban atualizado — tarefas do CP-3 organizadas
 - Cronograma atualizado — progresso até metade do semestre
 - Retrospectiva breve — o que deu certo, o que melhorar (pode ser na ata)
 
-## **🦊 GitLab**
+## **🐙 GitHub**
 
-- Código do frontend no repositório (`/frontend` ou `/client`)
+- Código do frontend no repositório (`/frontend` ou `/client`)
 - Commits de todos os membros — distribuição equilibrada
-- Issues ou boards usados para organizar tarefas
+- Issues ou Projects usados para organizar tarefas
 
 ## **🎤 Apresentação**
 
@@ -216,7 +228,7 @@ Anotações relevantes.
 
 # **🚀 CP-4 — MVP Completo**
 
-> 📅 **Semana 12 · 07/05/2026** 🎯 **Objetivo:** Fluxo completo end-to-end funcionando
+> 📅 **Semana 10 · 15/10/2026** 🎯 **Objetivo:** Fluxo completo end-to-end funcionando
 > 
 
 ## **💻 Entregáveis técnicos**
@@ -229,16 +241,16 @@ Anotações relevantes.
 
 ## **📝 Documentos de gestão**
 
-- Mínimo 3 atas novas (semanas S10, S11 e S12)
+- Mínimo 2 atas novas (semanas S9 e S10)
 - Board/Kanban atualizado — tarefas finais antes do MVP
 - Cronograma atualizado — status antes da reta final
-- Lista de bugs/pendências — Issues abertas no GitLab
+- Lista de bugs/pendências — Issues abertas no GitHub
 
-## **🦊 GitLab**
+## **🐙 GitHub**
 
 - Histórico de commits consistente ao longo das semanas
-- Uso de branches para features (`feature/login`, `feature/dashboard`)
-- Merge requests documentados (diferencial)
+- Uso de branches para features (`feature/login`, `feature/dashboard`)
+- Pull requests documentados (diferencial)
 - README completo: descrição, stack, como instalar e rodar
 
 ## **🎤 Apresentação**
@@ -251,7 +263,7 @@ Anotações relevantes.
 
 # **🌐 CP-5 — Hospedagem + README Final**
 
-> 📅 **Semana 14 · 21/05/2026** 🎯 **Objetivo:** Sistema hospedado online + documentação final
+> 📅 **Semana 12 · 29/10/2026** 🎯 **Objetivo:** Sistema hospedado online + documentação final
 > 
 
 ## **💻 Entregáveis técnicos**
@@ -271,18 +283,18 @@ Anotações relevantes.
 
 ## **📝 Documentos de gestão**
 
-- Mínimo 2 atas novas (semanas S13 e S14)
-- Todas as atas do semestre compiladas em `/docs/atas`
+- Mínimo 2 atas novas (semanas S11 e S12)
+- Todas as atas do semestre compiladas em `/docs/atas`
 - Board/Kanban finalizado — tudo em "Done" ou documentado como pendência
 - Relatório final — 1 página: planejado vs. entregue + lições aprendidas
 - Cronograma final — versão final: cumprido vs. planejado
 
-## **🦊 GitLab**
+## **🐙 GitHub**
 
 - Repositório público ou compartilhado com o professor
 - Tags ou releases marcando versões importantes
 - Histórico limpo e organizado
-- Pasta `/docs` completa com toda documentação do semestre
+- Pasta `/docs` completa com toda documentação do semestre
 
 ## **🎤 Apresentação**
 
@@ -294,7 +306,7 @@ Anotações relevantes.
 
 # **🏆 AMOSTRATEC — Avaliação Final (N2)**
 
-> 🎓 A AMOSTRATEC é a avaliação final do semestre, separada dos checkpoints.
+> 🎓 A AMOSTRATEC é a avaliação final do semestre, separada dos checkpoints. **Data: 10/12/2026 (S18).**
 > 
 
 | **Critério** | **Peso** |
@@ -309,7 +321,7 @@ Anotações relevantes.
 - Sistema 100% funcional e hospedado
 - Todos os membros preparados para defesa técnica
 - Apresentação final organizada e profissional
-- README completo e atualizado no GitLab
+- README completo e atualizado no GitHub
 
 ---
 
@@ -317,48 +329,48 @@ Anotações relevantes.
 
 | **Componente** | **Valor** |
 | --- | --- |
-| N1 — Soma dos 5 Checkpoints | 5 × 10 = **50 pts** |
+| N1 — Soma dos 5 Checkpoints | 5 × 10 = **50 pts** |
 | N2 — AMOSTRATEC | **50 pts** |
 | **NOTA FINAL** | **N1 + N2 = 100 pts** |
 
-> ✅ **Aprovação:** ≥ 60 pontos
+> ✅ **Aprovação:** ≥ 60 pontos
 > 
 
 ---
 
 # **⚡ Dicas para se dar bem**
 
-> 🔥 **1. Commitem com frequência!** Commits semanais são avaliados. Não façam tudo na última hora.
+> 🔥 **1. Commitem com frequência!** Commits semanais são avaliados. Não façam tudo na última hora.
 > 
 
-> 📝 **2. Mensagens de commit descritivas** ❌ `update` — ✅ `feat: adiciona endpoint de criação de usuário`
+> 📝 **2. Mensagens de commit descritivas** ❌ `update` — ✅ `feat: adiciona endpoint de criação de usuário`
 > 
 
-> 👥 **3. Todos participam** Cada membro deve ter commits. Grupos com "carregadores" serão penalizados no critério GitLab.
+> 👥 **3. Todos participam** Cada membro deve ter commits. Grupos com "carregadores" serão penalizados no critério GitHub.
 > 
 
-> 🎯 **4. Live Code — TODOS estudam tudo** Qualquer membro pode ser sorteado. Estudem o código do grupo inteiro, não só a "sua parte".
+> 🎯 **4. Live Code — TODOS estudam tudo** Qualquer membro pode ser sorteado. Estudem o código do grupo inteiro, não só a "sua parte".
 > 
 
-> 📖 **5. Documentem o projeto** O README é a vitrine. Deve explicar tudo para alguém de fora entender e rodar.
+> 📖 **5. Documentem o projeto** O README é a vitrine. Deve explicar tudo para alguém de fora entender e rodar.
 > 
 
-> 🌿 **6. Usem branches** Trabalhar direto na `main` é arriscado. Usem branches e façam merge.
+> 🌿 **6. Usem branches** Trabalhar direto na `main` é arriscado. Usem branches e façam merge.
 > 
 
-> 🌐 **7. Hospedagem desde cedo** Não deixem para hospedar só no CP-5. Quanto antes, menos problemas.
+> 🌐 **7. Hospedagem desde cedo** Não deixem para hospedar só no CP-5. Quanto antes, menos problemas.
 > 
 
-> 📋 **8. Façam atas de reunião!** Ata não é burocracia — é registro de decisões. Quando surgir "quem ficou de fazer o quê", a ata resolve.
+> 📋 **8. Façam atas de reunião!** Ata não é burocracia — é registro de decisões, e vale 1,5 ponto em cada CP.
 > 
 
-> 📊 **9. Usem o Board do GitLab** Issues com labels (`bug`, `feature`, `docs`) + Kanban board = organização visível e nota no critério GitLab.
+> 📊 **9. Usem o GitHub Projects** Issues com labels (`bug`, `feature`, `docs`) + Kanban board = organização visível e nota no critério GitHub.
 > 
 
-> 📁 **10. Pasta `/docs` organizada** Atas, diagramas, cronogramas — tudo indexado. Bagunça = nota menor em Apresentação.
+> 📁 **10. Pasta `/docs` organizada** Atas, diagramas, cronogramas — tudo indexado. Bagunça = nota menor em Apresentação.
 > 
 
 ---
 
-> 📅 Atualizado em: 26/03/2026 📌 Projetos Integrados 2 (VIA231) — Uniube 2026/1
+> 📅 Atualizado em: 27/08/2026 📌 Projetos Integrados 2 (VIA231) — Uniube 2026/2
 >

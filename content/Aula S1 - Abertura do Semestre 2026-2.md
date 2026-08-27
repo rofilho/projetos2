@@ -162,17 +162,17 @@ Fica para a próxima aula, **27/08**, dando ao grupo o intervalo para discutir e
 | --- | --- | --- |
 | 13/08 | S1 | Abertura: regras, avaliação, formação de grupos, setup GitHub |
 | 20/08 | — | **Sem aula** |
-| 27/08 | S3 | Termo de Abertura + README com escopo definido |
-| 03/09 | S4 | Mentoria em laboratório |
-| 10/09 | S5 | **CP-1** — Banco de Dados: script SQL + modelo ER |
-| 17/09 | S6 | Mentoria em laboratório |
-| 24/09 | S7 | **CP-2** — Backend: API CRUD funcional |
-| 01/10 | S8 | Mentoria em laboratório |
-| 08/10 | S9 | **CP-3** — Integração: frontend consumindo a API |
-| 15/10 | S10 | Mentoria em laboratório |
-| 22/10 | S11 | **CP-4** — MVP com fluxo completo end-to-end |
-| 29/10 | S12 | Mentoria em laboratório |
-| 05/11 | S13 | **CP-5** — Hospedagem ativa e deploy na nuvem |
+| 27/08 | S3 | Apresentação do Escopo |
+| 03/09 | S4 | **CP-1** — Banco de Dados: script SQL + modelo ER + Termo de Abertura |
+| 10/09 | S5 | Mentoria em laboratório |
+| 17/09 | S6 | **CP-2** — Backend: API CRUD funcional |
+| 24/09 | S7 | Mentoria em laboratório |
+| 01/10 | S8 | **CP-3** — Integração: frontend consumindo a API |
+| 08/10 | S9 | Mentoria em laboratório |
+| 15/10 | S10 | **CP-4** — MVP com fluxo completo end-to-end |
+| 22/10 | S11 | Mentoria em laboratório |
+| 29/10 | S12 | **CP-5** — Hospedagem ativa e deploy na nuvem |
+| 05/11 | S13 | Mentoria em laboratório |
 | 12/11 | S14 | Mentoria em laboratório |
 | 19/11 | S15 | Hardening, troubleshooting e ensaio da defesa |
 | 26/11 | S16 | Mentoria em laboratório |

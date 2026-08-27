@@ -4,8 +4,8 @@ codigo: "VIA231"
 aula: CP5
 titulo: "Deploy na Nuvem — Hospedagem, DNS e Segurança"
 tipo: pratica
-semana: 14
-data: 2026-05-21
+semana: 12
+data: 2026-10-29
 status: publicado
 tags:
   - projetos-integrados
@@ -25,7 +25,7 @@ publicar: true
 
 **Disciplina:** Projetos Integrados 2 (VIA231)
 **Curso:** Inteligência Artificial e Ciência de Dados, Uniube
-**Semana:** 14 | Quarta-feira, 21/05/2026
+**Semana:** 12 | Quinta-feira, 29/10/2026
 **Professor:** Romualdo Mathias Filho
 **Tipo:** 🔬 100% Prática (Hands-On)
 **Tópicos:** AWS Academy Learner Lab, EC2, Docker Compose em Produção, DNS Gratuito, SSL/HTTPS, Hardening
