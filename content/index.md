@@ -192,7 +192,7 @@ html, body, #quartz-root, #quartz-body, .page, .center, .center-content, article
     <a href="./03---Tabela-Mestre-de-Avaliacao" class="card" data-spa>
       <div class="card-thumb" style="background-image: url('assets/capa_aula03.png'); background-size: cover; background-position: center;"><div class="card-progress-bar"><div class="card-progress" style="width: 40%"></div></div></div>
       <div class="card-content">
-        <div class="card-title">📊 Tabela Mestre de Avaliação — Projetos Integrados 2</div>
+        <div class="card-title">📊 Como Você é Avaliado — Critérios e Rubrica</div>
         <div class="card-meta"><span>Acessar Aula</span><span></span></div>
       </div>
     </a>
